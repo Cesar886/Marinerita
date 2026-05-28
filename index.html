@@ -3,284 +3,273 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Para el amor de mi vida 💖</title>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>Para mi Alejandra 🌸</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Nunito:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --pink-light: #ffe0ec;
-            --pink: #ff6b9d;
-            --pink-dark: #e84a7a;
-            --red: #ff3860;
-            --white: #fff5f7;
-            --shadow: 0 8px 32px rgba(255, 107, 157, 0.25);
-            --shadow-dark: 0 8px 32px rgba(232, 74, 122, 0.35);
+            --lila-1:   #f5f0ff;   /* fondo más claro */
+            --lila-2:   #ede5ff;
+            --lila-3:   #ddd0ff;
+            --lila-4:   #c9b8f5;   /* lila medio */
+            --lila-5:   #a98fe8;   /* acento fuerte */
+            --lila-6:   #7c5cbf;   /* texto / botón */
+            --pink-1:   #fff0f6;
+            --pink-2:   #ffd6ea;
+            --pink-3:   #ffb3d6;
+            --mint-1:   #edfaf4;
+            --mint-2:   #c5f0dd;
+            --text-dark: #3a2b5f;
+            --text-mid:  #7b6ea0;
+            --text-soft: #b4a8cc;
+            --white:     #ffffff;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, #ffddee 0%, #ffb6c1 25%, #ff9aae 50%, #fec5e5 75%, #ffd1dc 100%);
-            background-size: 400% 400%;
-            animation: gradientShift 15s ease infinite;
-            font-family: 'Quicksand', sans-serif;
-            overflow-x: hidden;
+            background:
+                radial-gradient(ellipse at 15% 20%, var(--pink-2) 0%, transparent 55%),
+                radial-gradient(ellipse at 85% 75%, var(--mint-2) 0%, transparent 50%),
+                radial-gradient(ellipse at 55% 50%, var(--lila-3) 0%, var(--lila-1) 100%);
+            background-color: var(--lila-1);
+            font-family: 'Nunito', sans-serif;
+            overflow: hidden;
             position: relative;
             -webkit-tap-highlight-color: transparent;
             user-select: none;
-            -webkit-user-select: none;
         }
 
-        @keyframes gradientShift {
-            0%,
-            100% {
-                background-position: 0% 50%;
-            }
-            25% {
-                background-position: 100% 0%;
-            }
-            50% {
-                background-position: 100% 100%;
-            }
-            75% {
-                background-position: 0% 100%;
-            }
-        }
-
-        /* Corazones flotantes de fondo */
-        .bg-hearts {
+        /* ── Partículas canvas ── */
+        #sparkCanvas {
             position: fixed;
-            top: 0;
-            left: 0;
+            inset: 0;
             width: 100%;
             height: 100%;
-            pointer-events: none;
             z-index: 0;
+            pointer-events: none;
         }
 
-        .bg-heart {
+        /* ── Floating emojis ── */
+        .bg-elements {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .bg-float {
             position: absolute;
             animation: floatUp linear infinite;
-            opacity: 0.5;
-            font-size: 1.5rem;
-            pointer-events: none;
+            opacity: 0;
         }
 
         @keyframes floatUp {
-            0% {
-                transform: translateY(105vh) rotate(0deg) scale(0.5);
-                opacity: 0;
-            }
-            10% {
-                opacity: 0.6;
-            }
-            30% {
-                opacity: 0.5;
-            }
-            60% {
-                opacity: 0.3;
-            }
-            90% {
-                opacity: 0.1;
-            }
-            100% {
-                transform: translateY(-10vh) rotate(360deg) scale(1.2);
-                opacity: 0;
-            }
+            0%   { transform: translateY(108vh) rotate(-10deg) scale(0.7); opacity: 0; }
+            12%  { opacity: 0.7; }
+            88%  { opacity: 0.3; }
+            100% { transform: translateY(-8vh)  rotate(10deg)  scale(1.05); opacity: 0; }
         }
 
-        /* Contenedor principal */
+        /* ── Carta principal ── */
         .main-container {
             position: relative;
             z-index: 10;
-            background: rgba(255, 255, 255, 0.55);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-radius: 30px;
-            padding: 3rem 2.5rem;
-            max-width: 600px;
+            background: rgba(255, 255, 255, 0.62);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border-radius: 40px;
+            padding: 4rem 3.4rem 3.8rem;
+            max-width: 630px;
             width: 90%;
             text-align: center;
-            box-shadow: var(--shadow-dark), 0 0 0 1px rgba(255, 255, 255, 0.6);
-            border: 2px solid rgba(255, 255, 255, 0.7);
+            border: 1.5px solid rgba(200, 180, 255, 0.55);
+            box-shadow:
+                0 20px 70px rgba(160, 120, 240, 0.14),
+                0 4px 20px rgba(160, 120, 240, 0.08),
+                inset 0 1px 0 rgba(255, 255, 255, 0.9);
         }
 
-        /* Título */
+        /* Detalles decorativos de esquinas */
+        .main-container::before,
+        .main-container::after {
+            content: '';
+            position: absolute;
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        .main-container::before {
+            top: -25px; left: -25px;
+            background: radial-gradient(circle, var(--pink-2) 0%, transparent 70%);
+            opacity: 0.7;
+        }
+        .main-container::after {
+            bottom: -25px; right: -25px;
+            background: radial-gradient(circle, var(--mint-2) 0%, transparent 70%);
+            opacity: 0.6;
+        }
+
+        .deco {
+            display: block;
+            font-size: 2.1rem;
+            margin-bottom: 1.4rem;
+            letter-spacing: 8px;
+            animation: floatSlow 4s ease-in-out infinite;
+        }
+
+        @keyframes floatSlow {
+            0%, 100% { transform: translateY(0); }
+            50%       { transform: translateY(-8px); }
+        }
+
         .title {
-            font-family: 'Dancing Script', cursive;
-            font-size: 2.8rem;
-            font-weight: 700;
-            color: #d6336c;
-            margin-bottom: 0.4rem;
-            line-height: 1.2;
-            text-shadow: 2px 2px 0 rgba(255, 255, 255, 0.7);
-            animation: gentlePulse 3s ease-in-out infinite;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.15rem;
+            font-weight: 400;
+            color: var(--text-dark);
+            line-height: 1.55;
         }
 
-        @keyframes gentlePulse {
-            0%,
-            100% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.03);
-            }
+        .title .name {
+            display: block;
+            font-style: italic;
+            font-size: 3rem;
+            font-weight: 600;
+            background: linear-gradient(130deg, var(--lila-6) 0%, var(--lila-5) 40%, #d48fc8 80%, var(--pink-3) 100%);
+            background-size: 220%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 5.5s ease-in-out infinite;
+            margin-bottom: 0.3rem;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { background-position: 0% 50%; }
+            50%       { background-position: 100% 50%; }
         }
 
         .subtitle {
-            font-family: 'Dancing Script', cursive;
-            font-size: 1.4rem;
-            color: #e85382;
-            margin-bottom: 2rem;
-            font-weight: 400;
-            opacity: 0.85;
+            margin-top: 0.55rem;
+            font-size: 0.78rem;
+            color: var(--text-soft);
+            letter-spacing: 4.5px;
+            text-transform: uppercase;
+            font-weight: 500;
         }
 
-        .hearts-deco {
-            font-size: 2.5rem;
-            margin-bottom: 0.8rem;
-            animation: bounceHearts 2s ease-in-out infinite;
+        .divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin: 1.9rem auto 2.6rem;
         }
 
-        @keyframes bounceHearts {
-            0%,
-            100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-15px);
-            }
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            max-width: 70px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--lila-4));
         }
 
-        /* Área de botones */
+        .divider::after {
+            background: linear-gradient(90deg, var(--lila-4), transparent);
+        }
+
+        .divider-dot {
+            width: 6px; height: 6px;
+            border-radius: 50%;
+            background: var(--lila-4);
+        }
+
+        /* ── Botones ── */
         .buttons-wrapper {
             position: relative;
             width: 100%;
-            height: 280px;
+            height: 185px;
             margin: 0 auto;
-            max-width: 500px;
+            max-width: 480px;
         }
 
         .btn {
             position: absolute;
-            padding: 1rem 2.5rem;
-            font-size: 1.3rem;
-            font-weight: 600;
-            border-radius: 60px;
+            padding: 0.85rem 2.2rem;
+            font-family: 'Nunito', sans-serif;
+            font-size: 0.88rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border-radius: 50px;
             border: none;
             cursor: pointer;
-            font-family: 'Quicksand', sans-serif;
-            letter-spacing: 0.5px;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
             outline: none;
             white-space: nowrap;
-            z-index: 1;
+            transition: all 0.28s ease;
         }
 
-        .btn:active {
-            transform: scale(0.94) !important;
-        }
-
-        /* Botón SÍ */
         .btn-yes {
-            background: linear-gradient(135deg, #ff6b9d 0%, #e84a7a 100%);
+            background: linear-gradient(135deg, var(--lila-5) 0%, #c9a4f0 50%, #e8a4cc 100%);
             color: white;
-            box-shadow: 0 6px 28px rgba(232, 74, 122, 0.45);
-            left: 15%;
+            box-shadow:
+                0 8px 28px rgba(169, 143, 232, 0.45),
+                0 0 0 3px rgba(200, 170, 245, 0.25);
+            left: 20%;
             top: 50%;
-            transform: translate(0, -50%);
-            font-size: 1.4rem;
-            padding: 1.1rem 3rem;
-            animation: yesGlow 2.5s ease-in-out infinite;
+            transform: translate(-50%, -50%);
             z-index: 2;
+            text-shadow: 0 1px 3px rgba(100, 60, 160, 0.25);
         }
 
-        .btn-yes:hover {
-            transform: translate(0, -50%) scale(1.08);
-            box-shadow: 0 10px 40px rgba(232, 74, 122, 0.6);
-            background: linear-gradient(135deg, #ff80b0 0%, #f05085 100%);
+        .btn-yes:hover, .btn-yes:active {
+            transform: translate(-50%, -50%) scale(1.09);
+            box-shadow:
+                0 14px 40px rgba(169, 143, 232, 0.58),
+                0 0 0 5px rgba(200, 170, 245, 0.2);
         }
 
-        @keyframes yesGlow {
-            0%,
-            100% {
-                box-shadow: 0 6px 28px rgba(232, 74, 122, 0.45);
-            }
-            50% {
-                box-shadow: 0 6px 45px rgba(255, 56, 96, 0.7), 0 0 60px rgba(255, 107, 157, 0.35);
-            }
-        }
-
-        /* Botón NO */
         .btn-no {
-            background: linear-gradient(135deg, #d0d0d0 0%, #b0b0b0 100%);
-            color: #555;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
-            left: 48%;
+            background: rgba(220, 210, 245, 0.35);
+            color: var(--text-soft);
+            border: 1.5px solid rgba(200, 180, 255, 0.4);
+            left: 80%;
             top: 50%;
-            transform: translate(0, -50%);
-            transition: left 0.18s cubic-bezier(0.25, 0.8, 0.25, 1.2),
-                top 0.18s cubic-bezier(0.25, 0.8, 0.25, 1.2),
-                transform 0.18s cubic-bezier(0.25, 0.8, 0.25, 1.2),
-                box-shadow 0.2s ease,
-                background 0.3s ease;
+            transform: translate(-50%, -50%);
             z-index: 1;
+            transition: left 0.17s ease-out, top 0.17s ease-out, box-shadow 0.2s;
         }
 
-        .btn-no:hover {
-            background: linear-gradient(135deg, #e0e0e0 0%, #c0c0c0 100%);
-            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.18);
-        }
+        .btn-no:hover { background: rgba(220, 210, 245, 0.5); }
 
-        /* Mensaje de intentos */
         .attempts-msg {
             position: absolute;
-            bottom: 10px;
+            bottom: 0;
             left: 50%;
             transform: translateX(-50%);
-            font-size: 0.95rem;
-            color: #c94a6e;
-            font-weight: 500;
+            font-size: 0.88rem;
+            color: var(--lila-6);
+            font-weight: 600;
             opacity: 0;
             transition: opacity 0.4s ease;
-            text-align: center;
-            width: 90%;
-            pointer-events: none;
+            width: 100%;
+            white-space: nowrap;
         }
 
-        .attempts-msg.visible {
-            opacity: 1;
-            animation: shakeMsg 0.5s ease;
-        }
+        .attempts-msg.visible { opacity: 1; }
 
-        @keyframes shakeMsg {
-            0%,
-            100% {
-                transform: translateX(-50%);
-            }
-            25% {
-                transform: translateX(calc(-50% - 5px));
-            }
-            75% {
-                transform: translateX(calc(-50% + 5px));
-            }
-        }
-
-        /* Overlay de éxito */
+        /* ── Overlay éxito ── */
         .overlay {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
+            inset: 0;
+            background: rgba(230, 215, 255, 0.55);
+            backdrop-filter: blur(14px);
             z-index: 1000;
             display: flex;
             align-items: center;
@@ -290,582 +279,262 @@
             transition: opacity 0.5s ease;
         }
 
-        .overlay.active {
-            opacity: 1;
-            pointer-events: all;
-        }
+        .overlay.active { opacity: 1; pointer-events: all; }
 
         .overlay-content {
-            background: white;
-            border-radius: 30px;
-            padding: 2.5rem 2rem;
+            background: rgba(255, 255, 255, 0.88);
+            border: 1.5px solid rgba(200, 175, 255, 0.5);
+            border-radius: 34px;
+            padding: 4rem 3.2rem;
             text-align: center;
-            max-width: 500px;
+            max-width: 510px;
             width: 90%;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            position: relative;
-            z-index: 1001;
-            animation: popIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow:
+                0 30px 80px rgba(160, 120, 240, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.95);
+            transform: scale(0.82) translateY(28px);
+            opacity: 0;
+            transition: all 0.65s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        @keyframes popIn {
-            0% {
-                transform: scale(0.3);
-                opacity: 0;
-            }
-            100% {
-                transform: scale(1);
-                opacity: 1;
-            }
-        }
+        .overlay.active .overlay-content { transform: scale(1) translateY(0); opacity: 1; }
 
-        .overlay-emoji {
-            font-size: 5rem;
-            animation: bounceHearts 0.8s ease-in-out infinite;
-        }
+        .overlay-emoji { font-size: 3rem; margin-bottom: 1.2rem; letter-spacing: 10px; }
 
         .overlay-title {
-            font-family: 'Dancing Script', cursive;
-            font-size: 2.5rem;
-            color: #d6336c;
-            margin: 1rem 0;
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 2rem;
+            background: linear-gradient(130deg, var(--lila-6), var(--lila-5), #d48fc8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.4rem;
+            line-height: 1.4;
         }
+
+        .overlay-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin: 1.3rem auto;
+        }
+
+        .overlay-divider::before, .overlay-divider::after {
+            content: '';
+            flex: 1;
+            max-width: 55px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--lila-4));
+        }
+
+        .overlay-divider::after {
+            background: linear-gradient(90deg, var(--lila-4), transparent);
+        }
+
+        .overlay-divider-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--lila-4); }
 
         .overlay-text {
+            font-size: 0.97rem;
+            color: var(--text-mid);
+            line-height: 1.9;
+            margin-bottom: 1.8rem;
+            font-weight: 300;
+        }
+
+        .overlay-sign {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
             font-size: 1.2rem;
-            color: #555;
-            margin-bottom: 0.5rem;
+            color: var(--lila-5);
+            line-height: 1.7;
         }
 
-        .overlay-date {
-            font-family: 'Dancing Script', cursive;
-            font-size: 1.4rem;
-            color: #e85382;
-            opacity: 0.8;
-        }
-
-        /* Corazones de explosión */
-        .explosion-heart {
-            position: fixed;
-            pointer-events: none;
-            z-index: 1002;
-            animation: explodeOut 1.2s ease-out forwards;
-            font-size: 2rem;
-        }
-
-        @keyframes explodeOut {
-            0% {
-                transform: translate(0, 0) scale(0);
-                opacity: 1;
-            }
-            30% {
-                opacity: 1;
-                transform: translate(var(--dx30), var(--dy30)) scale(1.4);
-            }
-            100% {
-                opacity: 0;
-                transform: translate(var(--dx), var(--dy)) scale(0.2);
-            }
-        }
-
-        /* Confeti */
-        .confetti-piece {
-            position: fixed;
-            pointer-events: none;
-            z-index: 1002;
-            animation: confettiFall linear forwards;
-        }
-
-        @keyframes confettiFall {
-            0% {
-                transform: translateY(-20vh) rotate(0deg) scale(1);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(110vh) rotate(720deg) scale(0.3);
-                opacity: 0;
-            }
-        }
-
-        /* Responsive */
+        /* ── Responsive ── */
         @media (max-width: 600px) {
-            .main-container {
-                padding: 2rem 1.2rem;
-                border-radius: 24px;
-                width: 94%;
-            }
-            .title {
-                font-size: 2rem;
-            }
-            .subtitle {
-                font-size: 1.1rem;
-            }
-            .hearts-deco {
-                font-size: 2rem;
-            }
-            .btn {
-                font-size: 1rem;
-                padding: 0.85rem 1.8rem;
-                border-radius: 50px;
-            }
-            .btn-yes {
-                font-size: 1.15rem;
-                padding: 0.9rem 2.2rem;
-                left: 8%;
-            }
-            .btn-no {
-                left: 50%;
-                font-size: 1rem;
-                padding: 0.85rem 1.8rem;
-            }
-            .buttons-wrapper {
-                height: 240px;
-            }
-            .overlay-title {
-                font-size: 2rem;
-            }
-            .overlay-emoji {
-                font-size: 4rem;
-            }
-            .attempts-msg {
-                font-size: 0.8rem;
-                bottom: 5px;
-            }
-        }
-
-        @media (max-width: 380px) {
-            .btn-yes {
-                left: 5%;
-                font-size: 1rem;
-                padding: 0.75rem 1.6rem;
-            }
-            .btn-no {
-                left: 48%;
-                font-size: 0.9rem;
-                padding: 0.7rem 1.4rem;
-            }
-            .buttons-wrapper {
-                height: 220px;
-            }
-            .title {
-                font-size: 1.7rem;
-            }
+            .main-container { padding: 3rem 1.8rem 2.8rem; }
+            .title { font-size: 1.8rem; }
+            .title .name { font-size: 2.3rem; }
+            .buttons-wrapper { height: 165px; }
+            .btn-yes { left: 50%; top: 22%; }
+            .btn-no  { left: 50%; top: 76%; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Corazones de fondo (se generan con JS) -->
-    <div class="bg-hearts" id="bgHearts"></div>
+<canvas id="sparkCanvas"></canvas>
+<div class="bg-elements" id="bgElements"></div>
 
-    <!-- Contenedor principal -->
-    <div class="main-container">
-        <div class="hearts-deco">💕 💖 💕</div>
-        <h1 class="title">¿Quieres pasar toda la vida<br>a mi lado?</h1>
-        <p class="subtitle">— Mi persona favorita —</p>
+<div class="main-container">
+    <span class="deco">🌸 ✨ 💜</span>
+    <h1 class="title">
+        <span class="name">Alejandra Guadalupe,</span>
+        ¿quieres pasar toda la vida a mi lado?
+    </h1>
 
-        <!-- Área de botones -->
-        <div class="buttons-wrapper" id="buttonsWrapper">
-            <button class="btn btn-yes" id="btnYes" aria-label="Sí">
-                ¡SÍ! 💍
-            </button>
-            <button class="btn btn-no" id="btnNo" aria-label="No">
-                No... 😅
-            </button>
-            <p class="attempts-msg" id="attemptsMsg"></p>
-        </div>
+
+    <div class="divider">
+        <div class="divider-dot"></div>
+        <div class="divider-dot"></div>
+        <div class="divider-dot"></div>
     </div>
 
-    <!-- Overlay de éxito -->
-    <div class="overlay" id="overlay">
-        <div class="overlay-content">
-            <div class="overlay-emoji">💖</div>
-            <h2 class="overlay-title">¡Sabía que dirías que sí!</h2>
-            <p class="overlay-text">Te amo con todo mi corazón 💕</p>
-            <p class="overlay-date">Para siempre, desde hoy 🌹</p>
-        </div>
+    <div class="buttons-wrapper" id="buttonsWrapper">
+        <button class="btn btn-yes" id="btnYes">¡Sí, acepto! 🌸</button>
+        <button class="btn btn-no"  id="btnNo">No... 😅</button>
+        <p class="attempts-msg" id="attemptsMsg"></p>
     </div>
+</div>
 
-    <script>
-        (function() {
-            // ==================== ELEMENTOS ====================
-            const btnNo = document.getElementById('btnNo');
-            const btnYes = document.getElementById('btnYes');
-            const buttonsWrapper = document.getElementById('buttonsWrapper');
-            const attemptsMsg = document.getElementById('attemptsMsg');
-            const overlay = document.getElementById('overlay');
-            const bgHeartsContainer = document.getElementById('bgHearts');
-            const body = document.body;
+<div class="overlay" id="overlay">
+    <div class="overlay-content">
+        <div class="overlay-emoji">🌸 💜 ✨</div>
+        <h2 class="overlay-title">Te extraño más de lo que pensaba 💜</h2>
+        <div class="overlay-divider">
+            <div class="overlay-divider-dot"></div>
+            <div class="overlay-divider-dot"></div>
+            <div class="overlay-divider-dot"></div>
+        </div>
+        <p class="overlay-text">
+            Aunque estemos ocupados, dos semanas sin verte se sienten eternas.<br>
+            Cuídate mucho por allá ✨
+        </p>
+        <p class="overlay-sign">— Daniel</p>
+    </div>
+</div>
 
-            // ==================== VARIABLES ====================
-            let attemptCount = 0;
-            let noBtnMoved = false;
-            const isMobile = /Android|iPhone|iPad|iPod|webOS/i.test(navigator.userAgent) ||
-                ('ontouchstart' in window && window.innerWidth < 768);
+<script>
+(function () {
+    /* ── Partículas suaves ── */
+    const canvas = document.getElementById('sparkCanvas');
+    const ctx    = canvas.getContext('2d');
+    let particles = [];
 
-            // Mensajes según número de intentos
-            const messages = [
-                { min: 3, max: 5, text: '¿Por qué intentas decir que no? 🤔' },
-                { min: 6, max: 10, text: '¡No puedes escapar! 😜' },
-                { min: 11, max: 16, text: 'Ríndete, el "Sí" te espera 💕' },
-                { min: 17, max: 25, text: '¿En serio? ¿Todavía lo intentas? 😂' },
-                { min: 26, max: 999, text: 'Llevas {count} intentos... creo que es hora de decir que sí 😏💘' },
-            ];
+    const COLORS = [
+        [200, 175, 255],   /* lila */
+        [255, 190, 220],   /* rosa */
+        [185, 240, 215],   /* menta */
+        [240, 220, 255],   /* lavanda pálido */
+    ];
 
-            // ==================== CORAZONES DE FONDO ====================
-            const heartEmojis = ['❤️', '💕', '💖', '💗', '💝', '💘', '💓', '🩷', '♥️', '💞'];
+    function resize() {
+        canvas.width  = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
 
-            function createBgHeart() {
-                const heart = document.createElement('span');
-                heart.classList.add('bg-heart');
-                heart.textContent = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
-                heart.style.left = Math.random() * 95 + '%';
-                heart.style.fontSize = (Math.random() * 1.8 + 1) + 'rem';
-                heart.style.animationDuration = (Math.random() * 8 + 8) + 's';
-                heart.style.animationDelay = Math.random() * 2 + 's';
-                heart.style.opacity = Math.random() * 0.5 + 0.2;
-                bgHeartsContainer.appendChild(heart);
+    function initParticles() {
+        particles = Array.from({ length: 90 }, () => {
+            const c = COLORS[Math.floor(Math.random() * COLORS.length)];
+            return {
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                r: Math.random() * 3.5 + 1,
+                color: c,
+                alpha: Math.random() * 0.55 + 0.15,
+                twinkle: Math.random() * Math.PI * 2,
+                speed: Math.random() * 0.016 + 0.005,
+                drift: (Math.random() - 0.5) * 0.12,
+                vy: -(Math.random() * 0.15 + 0.04),
+            };
+        });
+    }
 
-                // Eliminar el corazón cuando termine la animación
-                const duration = parseFloat(heart.style.animationDuration) + parseFloat(heart.style
-                .animationDelay);
-                setTimeout(() => {
-                    if (heart.parentNode) {
-                        heart.remove();
-                    }
-                }, duration * 1000 + 500);
+    function drawParticles() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        for (const p of particles) {
+            p.twinkle += p.speed;
+            p.x += p.drift;
+            p.y += p.vy;
+            if (p.y < -10) { p.y = canvas.height + 10; p.x = Math.random() * canvas.width; }
+
+            const a = p.alpha * (0.5 + 0.5 * Math.sin(p.twinkle));
+            const [r, g, b] = p.color;
+
+            /* halo suave */
+            const grd = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r * 2.5);
+            grd.addColorStop(0, `rgba(${r},${g},${b},${a})`);
+            grd.addColorStop(1, `rgba(${r},${g},${b},0)`);
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.r * 2.5, 0, Math.PI * 2);
+            ctx.fillStyle = grd;
+            ctx.fill();
+
+            /* núcleo */
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.r * 0.5, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(255,255,255,${a * 0.9})`;
+            ctx.fill();
+        }
+        requestAnimationFrame(drawParticles);
+    }
+
+    resize(); initParticles(); drawParticles();
+    window.addEventListener('resize', () => { resize(); initParticles(); });
+
+    /* ── Emojis flotantes ── */
+    const bgContainer = document.getElementById('bgElements');
+    const pool = ['🌸', '✨', '💜', '🌷', '💫', '🫧', '🌿', '🩷', '⭐'];
+
+    function createFloat() {
+        const el = document.createElement('span');
+        el.className = 'bg-float';
+        el.textContent = pool[Math.floor(Math.random() * pool.length)];
+        el.style.left = Math.random() * 94 + '%';
+        el.style.fontSize = (Math.random() * 1 + 0.75) + 'rem';
+        const dur = Math.random() * 13 + 12;
+        el.style.animationDuration = dur + 's';
+        bgContainer.appendChild(el);
+        setTimeout(() => el.remove(), dur * 1000);
+    }
+
+    setInterval(createFloat, 2000);
+    for (let i = 0; i < 8; i++) setTimeout(createFloat, i * 360);
+
+    /* ── Lógica botones ── */
+    const btnNo   = document.getElementById('btnNo');
+    const btnYes  = document.getElementById('btnYes');
+    const wrapper = document.getElementById('buttonsWrapper');
+    const msg     = document.getElementById('attemptsMsg');
+    const overlay = document.getElementById('overlay');
+
+    let attempts = 0;
+    const messages = [
+        { min: 1, max: 2,  text: 'Amor… creo que ese no era el botón 🌸' },
+        { min: 3, max: 4,  text: 'Las estrellas ya saben tu respuesta 💫' },
+        { min: 5, max: 7,  text: 'El universo conspira a nuestro favor ✨' },
+        { min: 8, max: 999,text: '¡Ríndete, preciosa! Tu "Sí" lo ilumina todo 💜' },
+    ];
+
+    function moveNoBtn() {
+        attempts++;
+        const wRect = wrapper.getBoundingClientRect();
+        const bRect = btnNo.getBoundingClientRect();
+        btnNo.style.transform = 'none';
+        btnNo.style.left = Math.max(0, Math.random() * (wRect.width  - bRect.width))  + 'px';
+        btnNo.style.top  = Math.max(0, Math.random() * (wRect.height - bRect.height)) + 'px';
+
+        for (const m of messages) {
+            if (attempts >= m.min && attempts <= m.max) {
+                msg.textContent = m.text;
+                msg.classList.add('visible');
+                break;
             }
+        }
+    }
 
-            // Crear corazones periódicamente
-            function spawnBgHearts() {
-                const count = isMobile ? 2 : 4;
-                for (let i = 0; i < count; i++) {
-                    setTimeout(() => createBgHeart(), i * 400);
-                }
-            }
+    btnNo.addEventListener('mouseover',  moveNoBtn);
+    btnNo.addEventListener('touchstart', e => { e.preventDefault(); moveNoBtn(); });
 
-            // Iniciar corazones de fondo
-            spawnBgHearts();
-            setInterval(spawnBgHearts, 2500);
+    function showSuccess() {
+        overlay.classList.add('active');
+        if (navigator.vibrate) navigator.vibrate([80, 50, 120, 50, 200]);
+    }
 
-            // ==================== MOVIMIENTO DEL BOTÓN "NO" ====================
-            function getRandomPosition() {
-                const wrapperRect = buttonsWrapper.getBoundingClientRect();
-                const btnRect = btnNo.getBoundingClientRect();
-
-                // Márgenes en píxeles para mantener el botón dentro del wrapper
-                const marginX = btnRect.width / 2 + 10;
-                const marginY = btnRect.height / 2 + 10;
-
-                const maxX = wrapperRect.width - marginX;
-                const maxY = wrapperRect.height - marginY;
-                const minX = marginX;
-                const minY = marginY;
-
-                // Convertir a porcentaje relativo al wrapper
-                const randomXPercent = (Math.random() * (maxX - minX) + minX) / wrapperRect.width * 100;
-                const randomYPercent = (Math.random() * (maxY - minY) + minY) / wrapperRect.height * 100;
-
-                return {
-                    left: randomXPercent,
-                    top: randomYPercent,
-                };
-            }
-
-            function moveNoButton() {
-                const pos = getRandomPosition();
-                btnNo.style.left = pos.left + '%';
-                btnNo.style.top = pos.top + '%';
-                // Mantener el transform para centrado (ya no usamos translate(-50%, -50%) porque usamos %)
-                // En realidad con left y top en % relativo al wrapper, la posición es absoluta
-                // Ajustamos: el left y top son el centro del botón si usamos transform: translate(-50%, -50%)
-                btnNo.style.transform = 'translate(-50%, -50%)';
-
-                if (!noBtnMoved) {
-                    noBtnMoved = true;
-                    // Pequeña vibración inicial
-                    btnNo.style.transition =
-                        'left 0.18s cubic-bezier(0.25, 0.8, 0.25, 1.2), top 0.18s cubic-bezier(0.25, 0.8, 0.25, 1.2), transform 0.18s cubic-bezier(0.25, 0.8, 0.25, 1.2)';
-                }
-            }
-
-            function handleNoInteraction() {
-                attemptCount++;
-                moveNoButton();
-                updateAttemptMessage();
-
-                // Efecto de vibración ligera en el wrapper
-                buttonsWrapper.style.animation = 'none';
-                buttonsWrapper.offsetHeight; // reflow
-                buttonsWrapper.style.animation = 'shakeWrapper 0.3s ease';
-                setTimeout(() => {
-                    buttonsWrapper.style.animation = '';
-                }, 300);
-            }
-
-            // Animación de vibración para el wrapper
-            const shakeStyle = document.createElement('style');
-            shakeStyle.textContent = `
-                @keyframes shakeWrapper {
-                    0%,100% { transform: translateX(0); }
-                    25% { transform: translateX(-4px); }
-                    75% { transform: translateX(4px); }
-                }
-            `;
-            document.head.appendChild(shakeStyle);
-
-            function updateAttemptMessage() {
-                let msg = '';
-                for (const m of messages) {
-                    if (attemptCount >= m.min && attemptCount <= m.max) {
-                        msg = m.text.replace('{count}', attemptCount);
-                        break;
-                    }
-                }
-                if (msg) {
-                    attemptsMsg.textContent = msg;
-                    attemptsMsg.classList.add('visible');
-                    // Reiniciar animación
-                    attemptsMsg.style.animation = 'none';
-                    attemptsMsg.offsetHeight;
-                    attemptsMsg.style.animation = '';
-                    if (attemptCount > 10) {
-                        attemptsMsg.style.animation = 'shakeMsg 0.5s ease';
-                    }
-                }
-                // Ocultar después de un tiempo si no hay más intentos
-                clearTimeout(attemptsMsg._timeout);
-                attemptsMsg._timeout = setTimeout(() => {
-                    if (attemptCount <= 2) {
-                        attemptsMsg.classList.remove('visible');
-                    }
-                }, 3000);
-            }
-
-            // Eventos para el botón "No"
-            btnNo.addEventListener('mouseenter', function(e) {
-                // Solo en desktop o cuando el mouse realmente entra
-                if (!isMobile) {
-                    handleNoInteraction();
-                }
-            });
-
-            // En móvil: al tocar (touchstart) movemos el botón
-            btnNo.addEventListener('touchstart', function(e) {
-                e.preventDefault(); // Prevenir que se dispare click después
-                handleNoInteraction();
-            });
-
-            // Si de alguna forma logran hacer click en "No"
-            btnNo.addEventListener('click', function(e) {
-                if (isMobile) {
-                    // En móvil ya lo movimos con touchstart
-                    e.preventDefault();
-                    return;
-                }
-                // En desktop, si logran clickearlo
-                attemptCount++;
-                updateAttemptMessage();
-                moveNoButton();
-                // Mostrar un pequeño toast
-                showMiniToast('¡Esa opción no es válida! 😜');
-            });
-
-            // ==================== MINI TOAST ====================
-            function showMiniToast(text) {
-                const toast = document.createElement('div');
-                toast.textContent = text;
-                toast.style.cssText = `
-                    position: fixed;
-                    bottom: 30px;
-                    left: 50%;
-                    transform: translateX(-50%);
-                    background: #555;
-                    color: white;
-                    padding: 0.7rem 1.5rem;
-                    border-radius: 50px;
-                    font-family: 'Quicksand', sans-serif;
-                    font-weight: 600;
-                    font-size: 0.95rem;
-                    z-index: 2000;
-                    opacity: 0;
-                    transition: opacity 0.3s ease, transform 0.3s ease;
-                    box-shadow: 0 8px 24px rgba(0,0,0,0.2);
-                    pointer-events: none;
-                `;
-                document.body.appendChild(toast);
-
-                requestAnimationFrame(() => {
-                    toast.style.opacity = '1';
-                    toast.style.transform = 'translateX(-50%) translateY(-10px)';
-                });
-
-                setTimeout(() => {
-                    toast.style.opacity = '0';
-                    toast.style.transform = 'translateX(-50%) translateY(0)';
-                    setTimeout(() => toast.remove(), 300);
-                }, 1800);
-            }
-
-            // ==================== BOTÓN "SÍ" ====================
-            btnYes.addEventListener('click', function() {
-                triggerSuccess();
-            });
-
-            // También si tocan "Sí" en móvil
-            btnYes.addEventListener('touchend', function(e) {
-                e.preventDefault();
-                triggerSuccess();
-            });
-
-            function triggerSuccess() {
-                // Mostrar overlay
-                overlay.classList.add('active');
-
-                // Explosión de corazones
-                createExplosion();
-
-                // Confeti
-                createConfetti();
-
-                // Ocultar el mensaje de intentos
-                attemptsMsg.classList.remove('visible');
-
-                // Vibrar si es móvil (si tiene soporte)
-                if (navigator.vibrate) {
-                    navigator.vibrate([50, 50, 50, 50, 100]);
-                }
-            }
-
-            // ==================== EXPLOSIÓN DE CORAZONES ====================
-            function createExplosion() {
-                const centerX = window.innerWidth / 2;
-                const centerY = window.innerHeight / 2;
-                const totalHearts = isMobile ? 40 : 70;
-
-                const explosionEmojis = ['❤️', '💕', '💖', '💗', '💝', '💘', '💓', '💞', '💌', '🌹', '✨', '💍'];
-
-                for (let i = 0; i < totalHearts; i++) {
-                    const heart = document.createElement('span');
-                    heart.classList.add('explosion-heart');
-                    heart.textContent = explosionEmojis[Math.floor(Math.random() * explosionEmojis.length)];
-                    heart.style.left = centerX + 'px';
-                    heart.style.top = centerY + 'px';
-                    heart.style.fontSize = (Math.random() * 2.5 + 1.5) + 'rem';
-
-                    // Dirección aleatoria
-                    const angle = Math.random() * Math.PI * 2;
-                    const distance = Math.random() * 400 + 150;
-                    const dx = Math.cos(angle) * distance;
-                    const dy = Math.sin(angle) * distance;
-                    const dx30 = dx * 0.3;
-                    const dy30 = dy * 0.3;
-
-                    heart.style.setProperty('--dx', dx + 'px');
-                    heart.style.setProperty('--dy', dy + 'px');
-                    heart.style.setProperty('--dx30', dx30 + 'px');
-                    heart.style.setProperty('--dy30', dy30 + 'px');
-
-                    heart.style.animationDuration = (Math.random() * 0.8 + 1) + 's';
-                    heart.style.animationDelay = Math.random() * 0.3 + 's';
-
-                    document.body.appendChild(heart);
-
-                    // Limpiar después de la animación
-                    const totalDuration = (parseFloat(heart.style.animationDuration) + parseFloat(heart.style
-                        .animationDelay)) * 1000;
-                    setTimeout(() => {
-                        if (heart.parentNode) heart.remove();
-                    }, totalDuration + 200);
-                }
-            }
-
-            // ==================== CONFETI ====================
-            function createConfetti() {
-                const confettiColors = [
-                    '#ff6b9d', '#ff3860', '#ff9aae', '#ffd1dc', '#fec5e5',
-                    '#ffb3c6', '#ff4d6d', '#ff758f', '#ff99ac', '#e84a7a',
-                    '#fff', '#ffe0ec', '#ffc2d1', '#ff8fa3',
-                ];
-                const confettiShapes = ['circle', 'square', 'heart'];
-                const totalConfetti = isMobile ? 60 : 120;
-
-                for (let i = 0; i < totalConfetti; i++) {
-                    const piece = document.createElement('div');
-                    piece.classList.add('confetti-piece');
-                    piece.style.left = Math.random() * 100 + '%';
-                    piece.style.top = -(Math.random() * 30 + 10) + 'px';
-                    piece.style.width = (Math.random() * 14 + 6) + 'px';
-                    piece.style.height = (Math.random() * 14 + 6) + 'px';
-                    piece.style.backgroundColor = confettiColors[Math.floor(Math.random() * confettiColors.length)];
-                    piece.style.animationDuration = (Math.random() * 3 + 3) + 's';
-                    piece.style.animationDelay = Math.random() * 1.5 + 's';
-                    piece.style.opacity = Math.random() * 0.8 + 0.2;
-
-                    // Formas
-                    const shape = confettiShapes[Math.floor(Math.random() * confettiShapes.length)];
-                    if (shape === 'circle') {
-                        piece.style.borderRadius = '50%';
-                    } else if (shape === 'heart') {
-                        piece.style.borderRadius = '50% 50% 10% 10%';
-                        piece.style.transform += ' rotate(45deg)';
-                        piece.style.width = (Math.random() * 10 + 8) + 'px';
-                        piece.style.height = piece.style.width;
-                    } else {
-                        piece.style.borderRadius = Math.random() > 0.5 ? '4px' : '2px';
-                    }
-
-                    document.body.appendChild(piece);
-
-                    const totalDuration = (parseFloat(piece.style.animationDuration) + parseFloat(piece.style
-                        .animationDelay)) * 1000;
-                    setTimeout(() => {
-                        if (piece.parentNode) piece.remove();
-                    }, totalDuration + 300);
-                }
-            }
-
-            // ==================== INICIALIZACIÓN ====================
-            function initNoButtonPosition() {
-                // Asegurar que el botón No esté en su posición inicial relativa al wrapper
-                btnNo.style.position = 'absolute';
-                btnNo.style.left = '48%';
-                btnNo.style.top = '50%';
-                btnNo.style.transform = 'translate(-50%, -50%)';
-            }
-
-            initNoButtonPosition();
-
-            // Reajustar al redimensionar ventana
-            let resizeTimeout;
-            window.addEventListener('resize', () => {
-                clearTimeout(resizeTimeout);
-                resizeTimeout = setTimeout(() => {
-                    if (!noBtnMoved) {
-                        initNoButtonPosition();
-                    }
-                    // Recalcular límites para futuros movimientos
-                }, 300);
-            });
-
-            // ==================== TECLA ESC PARA CERRAR OVERLAY (DEBUG) ====================
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape' && overlay.classList.contains('active')) {
-                    overlay.classList.remove('active');
-                    // Limpiar corazones y confeti restantes
-                    document.querySelectorAll('.explosion-heart, .confetti-piece').forEach(el => el.remove());
-                }
-            });
-
-            // ==================== DOBLE CLICK EN OVERLAY PARA CERRAR ====================
-            overlay.addEventListener('dblclick', function() {
-                overlay.classList.remove('active');
-                document.querySelectorAll('.explosion-heart, .confetti-piece').forEach(el => el.remove());
-            });
-
-            console.log('💖 Página lista para enamorar. ¡Buena suerte! 🌹');
-            console.log('👉 Tip: Intenta atrapar el botón "No"... si puedes 😏');
-        })();
-    </script>
+    btnYes.addEventListener('click',      showSuccess);
+    btnYes.addEventListener('touchstart', e => { e.preventDefault(); showSuccess(); });
+})();
+</script>
 </body>
 </html>
