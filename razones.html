@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Razones por las que te quiero 💜</title>
+  <title>Para mi Alejandra 🌸</title>
   <link rel="stylesheet" href="css/shared.css" />
   <style>
     /* ── Header ── */
@@ -79,17 +79,17 @@
       position: relative;
       z-index: 1;
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
       gap: 18px;
       max-width: 860px;
       margin: 30px auto 60px;
-      padding: 0 20px;
+      padding: 0 24px;
     }
 
     /* ── Card ── */
     .card-outer {
       perspective: 900px;
-      height: 200px;
+      height: 220px;
       cursor: pointer;
     }
     .card-inner {
@@ -219,9 +219,31 @@
     }
     .complete-card button:hover { background: var(--lila-5); }
 
-    @media (max-width: 400px) {
-      .grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
-      .card-outer { height: 180px; }
+    /* ── Responsive ── */
+    @media (max-width: 600px) {
+      header { padding: 52px 16px 8px; }
+      header .subtitle { font-size: 0.82rem; }
+
+      .counter-wrap { margin: 18px 0 8px; }
+
+      .grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+        padding: 0 14px;
+        margin-bottom: 40px;
+      }
+      .card-outer { height: 230px; }
+      .card-back .razon { font-size: 0.95rem; line-height: 1.4; }
+
+      .complete-card { padding: 32px 24px; }
+      .complete-card h2 { font-size: 1.6rem; }
+    }
+
+    @media (max-width: 380px) {
+      .grid { gap: 10px; padding: 0 10px; }
+      .card-outer { height: 220px; }
+      .card-back .razon { font-size: 0.88rem; }
+      .card-front .number { font-size: 2.2rem; }
     }
   </style>
 </head>
@@ -262,18 +284,18 @@
 
 <script>
   const razones = [
-    { icon: "😊", text: "Tu sonrisa ilumina cualquier cuarto en el que estás." },
-    { icon: "💪", text: "Admiro lo fuerte que eres, aunque a veces no te des cuenta." },
-    { icon: "🌙", text: "Me encanta cómo eres tan auténtica, sin pretender ser alguien más." },
-    { icon: "🎶", text: "Quiero saber qué música pones cuando estás sola y estás feliz." },
-    { icon: "🌸", text: "Tienes una forma de ser que me hace querer ser mejor persona." },
-    { icon: "💬", text: "Me gusta hablar contigo, incluso de cosas sin sentido." },
-    { icon: "🌟", text: "Brillas de un modo que no puedo explicar con palabras." },
-    { icon: "🤗", text: "Me das calma cuando todo está acelerado." },
-    { icon: "😂", text: "Tu forma de reírte es de mis cosas favoritas en el mundo." },
-    { icon: "🌊", text: "Tienes una profundidad que quiero seguir conociendo poco a poco." },
-    { icon: "🦋", text: "Me gustas tal como eres, con todo y tus dudas y tu historia." },
-    { icon: "❤️", text: "Cada día que pasa, me alegra más que estés en mi vida." },
+    { icon: "😊", text: "Tu sonrisa fue lo primero que noté de ti. Y sigue siendo lo que más me gusta cada vez que te veo." },
+    { icon: "🍂", text: "No fue un momento exacto en el que me gustaste. Fui cayendo poco a poco, y todavía sigo cayendo." },
+    { icon: "🤗", text: "Cuando me abrazas, todo lo que traía en la cabeza desaparece. No sé cómo lo haces, pero funciona." },
+    { icon: "🥖", text: "Me gusta que ir a comprar pan contigo se siente como un plan completo. No necesito más." },
+    { icon: "🎬", text: "Ver películas en la uni contigo es de mis cosas favoritas. No importa cuál, el punto eres tú." },
+    { icon: "🙏", text: "Que me agarres de la mano en la iglesia, sin decir nada, me dice más que muchas palabras." },
+    { icon: "📖", text: "Admiro mucho tu compromiso con el libro de actividades que estamos haciendo. Lo tomas en serio y eso me dice mucho de ti." },
+    { icon: "🌸", text: "La forma en que tratas a los demás me dice todo lo que necesito saber de quién eres. Eres buena persona, de verdad." },
+    { icon: "💬", text: "Siempre tienes algo que decir. Nunca hay un silencio incómodo contigo y me encanta eso." },
+    { icon: "✨", text: "Tu energía es contagiosa. Llegas y todo cambia. No sé explicarlo, pero se nota." },
+    { icon: "💜", text: "Llevamos unos meses y ya no me imagino no tenerte cerca." },
+    { icon: "🌊", text: "El colportaje nos alejó un poco, y fue cuando me di cuenta de cuánto me importas." },
   ];
 
   const grid = document.getElementById('grid');
