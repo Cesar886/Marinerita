@@ -4,39 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Para mi Alejandra 🌸</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Nunito:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/shared.css">
     <style>
-        :root {
-            --lila-1:   #f5f0ff;   /* fondo más claro */
-            --lila-2:   #ede5ff;
-            --lila-3:   #ddd0ff;
-            --lila-4:   #c9b8f5;   /* lila medio */
-            --lila-5:   #a98fe8;   /* acento fuerte */
-            --lila-6:   #7c5cbf;   /* texto / botón */
-            --pink-1:   #fff0f6;
-            --pink-2:   #ffd6ea;
-            --pink-3:   #ffb3d6;
-            --mint-1:   #edfaf4;
-            --mint-2:   #c5f0dd;
-            --text-dark: #3a2b5f;
-            --text-mid:  #7b6ea0;
-            --text-soft: #b4a8cc;
-            --white:     #ffffff;
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
         body {
-            min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            background:
-                radial-gradient(ellipse at 15% 20%, var(--pink-2) 0%, transparent 55%),
-                radial-gradient(ellipse at 85% 75%, var(--mint-2) 0%, transparent 50%),
-                radial-gradient(ellipse at 55% 50%, var(--lila-3) 0%, var(--lila-1) 100%);
-            background-color: var(--lila-1);
-            font-family: 'Nunito', sans-serif;
             overflow: hidden;
             position: relative;
             -webkit-tap-highlight-color: transparent;
@@ -386,6 +359,22 @@
         <button class="btn btn-no"  id="btnNo">No... 😅</button>
         <p class="attempts-msg" id="attemptsMsg"></p>
     </div>
+
+    <div style="text-align:center; margin-top: 20px;">
+      <a href="razones.html" style="
+        display: inline-block;
+        background: transparent;
+        color: var(--text-soft);
+        font-family: 'Nunito', sans-serif;
+        font-size: 0.72rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        text-decoration: none;
+        padding: 9px 22px;
+        border-radius: 99px;
+        border: 1px solid rgba(200, 180, 255, 0.45);
+      ">Ver razones por las que te quiero 💜</a>
+    </div>
 </div>
 
 <div class="overlay" id="overlay">
@@ -536,5 +525,6 @@
     btnYes.addEventListener('touchstart', e => { e.preventDefault(); showSuccess(); });
 })();
 </script>
+
 </body>
 </html>
