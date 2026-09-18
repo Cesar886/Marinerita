@@ -11,7 +11,7 @@
       position: relative;
       z-index: 1;
       text-align: center;
-      padding: 70px 20px 10px;
+      padding: 108px 20px 10px;
     }
     header .eyebrow {
       font-family: 'Lato', sans-serif;
@@ -221,7 +221,7 @@
 
     /* ── Responsive ── */
     @media (max-width: 600px) {
-      header { padding: 52px 16px 8px; }
+      header { padding: 88px 16px 8px; }
       header .subtitle { font-size: 0.82rem; }
 
       .counter-wrap { margin: 18px 0 8px; }
@@ -249,7 +249,14 @@
 </head>
 <body>
 
-<a href="index.html" class="back-link">← volver</a>
+<nav class="site-nav" aria-label="Navegación principal">
+  <span class="site-nav__brand">D <span aria-hidden="true">♡</span> A</span>
+  <div class="site-nav__links">
+    <a href="index.html">Inicio</a>
+    <a href="nuestra-historia.html">Historia</a>
+    <a href="razones.html" aria-current="page">Razones</a>
+  </div>
+</nav>
 
 <!-- Floating petals -->
 <div class="petal" style="left:8%;  animation-duration:9s;  animation-delay:0s">🌸</div>

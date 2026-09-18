@@ -31,6 +31,89 @@ body {
     background-color: var(--lila-1);
 }
 
+/* Navegación global */
+.site-nav {
+    position: fixed;
+    top: 18px;
+    left: 50%;
+    z-index: 800;
+    width: min(92%, 920px);
+    min-height: 54px;
+    padding: 8px 10px 8px 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    transform: translateX(-50%);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 99px;
+    background: rgba(255, 255, 255, 0.68);
+    box-shadow: 0 10px 35px rgba(87, 58, 128, 0.1);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+}
+
+.site-nav__brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.08rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    color: var(--text-dark);
+    white-space: nowrap;
+}
+
+.site-nav__links {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.site-nav a {
+    color: var(--text-mid);
+    text-decoration: none;
+    font-size: 0.73rem;
+    font-weight: 600;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    padding: 10px 14px;
+    border-radius: 99px;
+    transition: color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.site-nav a:hover,
+.site-nav a:focus-visible {
+    color: var(--lila-6);
+    background: var(--lila-2);
+    outline: none;
+}
+
+.site-nav a[aria-current="page"] {
+    color: #fff;
+    background: linear-gradient(135deg, var(--lila-5), #d89bc7);
+    box-shadow: 0 6px 16px rgba(169, 143, 232, 0.28);
+    cursor: default;
+}
+
+@media (max-width: 600px) {
+    .site-nav {
+        top: 10px;
+        width: calc(100% - 20px);
+        min-height: 50px;
+        padding: 6px 7px 6px 13px;
+        gap: 7px;
+    }
+
+    .site-nav__brand { font-size: 0.95rem; }
+    .site-nav__links { gap: 1px; }
+    .site-nav a { padding: 9px 9px; font-size: 0.62rem; letter-spacing: 0.055em; }
+}
+
+@media (max-width: 370px) {
+    .site-nav { padding-left: 10px; }
+    .site-nav__brand { font-size: 0.85rem; }
+    .site-nav a { padding-inline: 7px; font-size: 0.58rem; }
+}
+
 .back-link {
     position: fixed;
     top: 18px;

@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f5f0ff">
+  <meta name="description" content="Una pequeña historia de Daniel y Alejandra, contada con nuestros momentos favoritos.">
+  <title>Nuestra historia — Daniel &amp; Alejandra</title>
+  <link rel="stylesheet" href="css/shared.css">
+  <style>
+    :root {
+      --story-ink: #3a2b5f;
+      --story-muted: #776990;
+      --story-paper: rgba(255, 255, 255, 0.74);
+      --story-line: rgba(169, 143, 232, 0.24);
+      --story-shadow: 0 24px 70px rgba(83, 55, 125, 0.14);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      color: var(--story-ink);
+      min-height: 100vh;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.34;
+      background-image: radial-gradient(rgba(124, 92, 191, 0.18) 0.7px, transparent 0.7px);
+      background-size: 18px 18px;
+      mask-image: linear-gradient(to bottom, black, transparent 72%);
+    }
+
+    main { position: relative; z-index: 1; }
+
+    .hero {
+      width: min(1180px, calc(100% - 32px));
+      min-height: 94vh;
+      margin: 0 auto;
+      padding: 116px 0 58px;
+      display: grid;
+      grid-template-columns: minmax(280px, 0.88fr) minmax(420px, 1.12fr);
+      gap: clamp(40px, 7vw, 90px);
+      align-items: center;
+    }
+
+    .hero__copy { padding-left: clamp(0px, 3vw, 36px); }
+
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 22px;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--lila-6);
+    }
+
+    .eyebrow::before {
+      content: '';
+      width: 38px;
+      height: 1px;
+      background: var(--lila-5);
+    }
+
+    .hero h1 {
+      max-width: 570px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3.3rem, 7vw, 6.1rem);
+      font-weight: 400;
+      line-height: 0.88;
+      letter-spacing: -0.045em;
+      color: var(--story-ink);
+    }
+
+    .hero h1 em {
+      display: block;
+      margin-left: clamp(22px, 5vw, 76px);
+      color: var(--lila-6);
+      font-weight: 600;
+    }
+
+    .hero__lead {
+      max-width: 470px;
+      margin-top: 30px;
+      color: var(--story-muted);
+      font-size: clamp(0.98rem, 1.4vw, 1.08rem);
+      font-weight: 300;
+      line-height: 1.85;
+    }
+
+    .hero__signature {
+      margin-top: 28px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      font-style: italic;
+      color: var(--lila-5);
+    }
+
+    .hero__visual {
+      position: relative;
+      min-height: 610px;
+    }
+
+    .hero__visual::before {
+      content: '';
+      position: absolute;
+      inset: 8% 0 5% 12%;
+      border: 1px solid rgba(169, 143, 232, 0.25);
+      border-radius: 48% 48% 28px 28px;
+      transform: rotate(3deg);
+    }
+
+    .hero-photo {
+      position: absolute;
+      overflow: hidden;
+      border: 8px solid rgba(255, 255, 255, 0.86);
+      background: var(--white);
+      box-shadow: var(--story-shadow);
+    }
+
+    .hero-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    .hero-photo--main {
+      inset: 0 10% 8% 8%;
+      border-radius: 48% 48% 26px 26px;
+    }
+
+    .hero-photo--main img { object-position: center 42%; }
+
+    .hero-photo--small {
+      right: 0;
+      bottom: 0;
+      width: 42%;
+      height: 37%;
+      border-radius: 22px;
+      transform: rotate(4deg);
+    }
+
+    .hero-photo--small img { object-position: center 38%; }
+
+    .hero__note {
+      position: absolute;
+      left: -5%;
+      bottom: 12%;
+      z-index: 3;
+      padding: 14px 18px;
+      border: 1px solid rgba(255, 255, 255, 0.78);
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.78);
+      box-shadow: 0 15px 40px rgba(82, 50, 126, 0.12);
+      backdrop-filter: blur(14px);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.08rem;
+      font-style: italic;
+      transform: rotate(-4deg);
+    }
+
+    .intro {
+      width: min(860px, calc(100% - 40px));
+      margin: 70px auto 100px;
+      text-align: center;
+    }
+
+    .section-mark {
+      display: inline-block;
+      margin-bottom: 16px;
+      color: var(--lila-5);
+      font-family: 'Lato', sans-serif;
+      font-size: 0.67rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+    }
+
+    .intro blockquote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.1rem, 5vw, 4rem);
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: -0.025em;
+    }
+
+    .intro blockquote em { color: var(--lila-6); }
+
+    .chapter {
+      width: min(1160px, calc(100% - 32px));
+      margin: 0 auto 120px;
+    }
+
+    .chapter__heading {
+      display: grid;
+      grid-template-columns: 90px 1fr 0.8fr;
+      gap: 24px;
+      align-items: end;
+      margin-bottom: 36px;
+      padding-bottom: 26px;
+      border-bottom: 1px solid var(--story-line);
+    }
+
+    .chapter__number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem;
+      color: var(--lila-5);
+    }
+
+    .chapter h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.3rem, 4.8vw, 4.4rem);
+      font-weight: 400;
+      line-height: 0.95;
+      letter-spacing: -0.035em;
+    }
+
+    .chapter__heading p {
+      color: var(--story-muted);
+      font-size: 0.94rem;
+      font-weight: 300;
+      line-height: 1.7;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      grid-auto-rows: 90px;
+      gap: 16px;
+    }
+
+    .moment {
+      position: relative;
+      overflow: hidden;
+      border: 0;
+      border-radius: 22px;
+      padding: 0;
+      background: var(--lila-2);
+      box-shadow: 0 12px 34px rgba(72, 46, 112, 0.1);
+      cursor: zoom-in;
+    }
+
+    .moment img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1), filter 0.4s ease;
+    }
+
+    .moment::after {
+      content: attr(data-caption);
+      position: absolute;
+      left: 14px;
+      right: 14px;
+      bottom: 12px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      color: #fff;
+      background: linear-gradient(135deg, rgba(55, 35, 82, 0.62), rgba(83, 53, 115, 0.32));
+      backdrop-filter: blur(8px);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      font-style: italic;
+      text-align: left;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .moment:hover img,
+    .moment:focus-visible img { transform: scale(1.045); filter: saturate(1.06); }
+    .moment:hover::after,
+    .moment:focus-visible::after { opacity: 1; transform: translateY(0); }
+    .moment:focus-visible { outline: 3px solid var(--lila-5); outline-offset: 3px; }
+
+    .moment--a { grid-column: span 7; grid-row: span 5; }
+    .moment--b { grid-column: span 5; grid-row: span 3; }
+    .moment--c { grid-column: span 5; grid-row: span 2; }
+    .moment--d { grid-column: span 4; grid-row: span 4; }
+    .moment--e { grid-column: span 4; grid-row: span 4; }
+    .moment--f { grid-column: span 4; grid-row: span 4; }
+
+    .moment--landscape img { object-position: center 44%; }
+    .moment--portrait img { object-position: center 36%; }
+
+    .promise {
+      width: min(1040px, calc(100% - 32px));
+      margin: 20px auto 90px;
+      padding: clamp(42px, 8vw, 90px);
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      border-radius: 36px;
+      background:
+        radial-gradient(circle at 15% 5%, rgba(255, 214, 234, 0.8), transparent 36%),
+        radial-gradient(circle at 90% 90%, rgba(197, 240, 221, 0.72), transparent 34%),
+        rgba(255, 255, 255, 0.56);
+      box-shadow: var(--story-shadow);
+      text-align: center;
+    }
+
+    .promise h2 {
+      margin-bottom: 18px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      font-weight: 400;
+      line-height: 1;
+    }
+
+    .promise h2 em { color: var(--lila-6); }
+    .promise p { max-width: 620px; margin: 0 auto; color: var(--story-muted); line-height: 1.8; font-weight: 300; }
+    .promise__heart { display: block; margin-top: 28px; color: var(--lila-5); font-size: 1.4rem; }
+
+    footer {
+      position: relative;
+      z-index: 1;
+      padding: 0 24px 42px;
+      color: var(--story-muted);
+      text-align: center;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.68rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      background: rgba(40, 25, 59, 0.82);
+      backdrop-filter: blur(14px);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.28s ease, visibility 0.28s ease;
+    }
+
+    .lightbox.is-open { opacity: 1; visibility: visible; }
+
+    .lightbox__figure {
+      position: relative;
+      max-width: min(900px, 94vw);
+      max-height: 90vh;
+      margin: 0;
+      padding: 9px 9px 16px;
+      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.94);
+      box-shadow: 0 30px 90px rgba(15, 7, 25, 0.35);
+      transform: translateY(14px) scale(0.97);
+      transition: transform 0.32s ease;
+    }
+
+    .lightbox.is-open .lightbox__figure { transform: translateY(0) scale(1); }
+    .lightbox__figure img { max-width: 100%; max-height: calc(90vh - 68px); display: block; border-radius: 15px; object-fit: contain; }
+    .lightbox__figure figcaption { padding: 12px 12px 0; font-family: 'Cormorant Garamond', serif; font-size: 1.06rem; font-style: italic; text-align: center; }
+
+    .lightbox__close {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      width: 42px;
+      height: 42px;
+      border: 1px solid rgba(255,255,255,.6);
+      border-radius: 50%;
+      background: rgba(42, 25, 61, 0.68);
+      color: #fff;
+      font-size: 1.25rem;
+      cursor: pointer;
+      backdrop-filter: blur(8px);
+    }
+
+    @media (max-width: 820px) {
+      .hero { grid-template-columns: 1fr; padding-top: 112px; }
+      .hero__copy { text-align: center; padding: 20px 10px 0; }
+      .eyebrow { justify-content: center; }
+      .hero h1 { margin-inline: auto; }
+      .hero h1 em { margin-left: 0; }
+      .hero__lead { margin-inline: auto; }
+      .hero__visual { min-height: 610px; width: min(620px, 100%); margin: 0 auto; }
+      .chapter__heading { grid-template-columns: 50px 1fr; }
+      .chapter__heading p { grid-column: 2; }
+    }
+
+    @media (max-width: 620px) {
+      .hero { min-height: auto; padding-top: 100px; gap: 44px; }
+      .hero__visual { min-height: 490px; }
+      .hero-photo--main { inset: 0 6% 10% 2%; }
+      .hero-photo--small { width: 45%; height: 34%; }
+      .hero__note { left: 0; bottom: 8%; font-size: 0.95rem; }
+      .intro { margin: 50px auto 78px; }
+      .chapter { margin-bottom: 80px; }
+      .chapter__heading { grid-template-columns: 34px 1fr; gap: 12px; }
+      .chapter__heading p { font-size: 0.88rem; }
+      .gallery { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 150px; gap: 10px; }
+      .moment { grid-column: span 1; grid-row: span 2; border-radius: 16px; }
+      .moment--a, .moment--d { grid-column: span 2; grid-row: span 2; }
+      .moment::after { opacity: 1; transform: none; font-size: 0.86rem; }
+      .promise { border-radius: 26px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="site-nav" aria-label="Navegación principal">
+    <span class="site-nav__brand">D <span aria-hidden="true">♡</span> A</span>
+    <div class="site-nav__links">
+      <a href="index.html">Inicio</a>
+      <a href="nuestra-historia.html" aria-current="page">Historia</a>
+      <a href="razones.html">Razones</a>
+    </div>
+  </nav>
+
+  <main>
+    <section class="hero" aria-labelledby="story-title">
+      <div class="hero__copy">
+        <p class="eyebrow">Nuestra historia, en pequeños instantes</p>
+        <h1 id="story-title">Daniel <em>&amp; Alejandra</em></h1>
+        <p class="hero__lead">
+          Hay historias que comienzan sin hacer ruido y, poco a poco, se convierten
+          en el lugar al que siempre quieres volver. Esta es la nuestra.
+        </p>
+        <p class="hero__signature">Con amor, para mi marinerita.</p>
+      </div>
+
+      <div class="hero__visual" aria-label="Fotografías destacadas de Daniel y Alejandra">
+        <figure class="hero-photo hero-photo--main">
+          <img src="assets/img/IMG-20260917-WA0023.jpg" alt="Daniel y Alejandra caminando juntos entre los árboles">
+        </figure>
+        <figure class="hero-photo hero-photo--small">
+          <img src="assets/img/1789755074100.jpg" alt="Daniel y Alejandra sonriendo juntos">
+        </figure>
+        <p class="hero__note">Mi lugar favorito siempre es contigo ✦</p>
+      </div>
+    </section>
+
+    <section class="intro" aria-label="Dedicatoria">
+      <span class="section-mark">Lo que somos</span>
+      <blockquote>
+        “No necesito que cada día sea perfecto;<br>
+        sólo quiero que muchos de ellos sean <em>contigo</em>.”
+      </blockquote>
+    </section>
+
+    <section class="chapter" id="momentos" aria-labelledby="chapter-one">
+      <div class="chapter__heading">
+        <span class="chapter__number">01</span>
+        <h2 id="chapter-one">Donde todo se siente especial</h2>
+        <p>Los planes sencillos, las miradas inesperadas y esa forma tan nuestra de convertir cualquier lugar en un recuerdo.</p>
+      </div>
+
+      <div class="gallery">
+        <button class="moment moment--a moment--landscape" type="button" data-caption="Caminando juntos, como quiero seguir haciéndolo" data-full="assets/img/IMG-20260917-WA0022.jpg">
+          <img src="assets/img/IMG-20260917-WA0022.jpg" alt="Daniel y Alejandra caminando en un sendero" loading="lazy">
+        </button>
+        <button class="moment moment--b moment--portrait" type="button" data-caption="Dos sombreros y una historia que apenas comienza" data-full="assets/img/1789755073861.jpg">
+          <img src="assets/img/1789755073861.jpg" alt="Daniel y Alejandra con sombreros en una celebración" loading="lazy">
+        </button>
+        <button class="moment moment--c moment--landscape" type="button" data-caption="Tu sonrisa siempre mejora la foto" data-full="assets/img/1789755074062.jpg">
+          <img src="assets/img/1789755074062.jpg" alt="Selfie alegre de Daniel y Alejandra al aire libre" loading="lazy">
+        </button>
+      </div>
+    </section>
+
+    <section class="chapter" aria-labelledby="chapter-two">
+      <div class="chapter__heading">
+        <span class="chapter__number">02</span>
+        <h2 id="chapter-two">Risas que quiero guardar</h2>
+        <p>Porque el amor también vive en las bromas, en las caras espontáneas y en todo lo que nos hace reír sin pensarlo.</p>
+      </div>
+
+      <div class="gallery">
+        <button class="moment moment--d moment--portrait" type="button" data-caption="Nosotros, siendo nosotros" data-full="assets/img/1789755074016.jpg">
+          <img src="assets/img/1789755074016.jpg" alt="Daniel y Alejandra haciendo una expresión divertida" loading="lazy">
+        </button>
+        <button class="moment moment--e moment--portrait" type="button" data-caption="Un beso que se queda conmigo" data-full="assets/img/IMG-20260905-WA0020.jpg">
+          <img src="assets/img/IMG-20260905-WA0020.jpg" alt="Alejandra besando a Daniel en la mejilla" loading="lazy">
+        </button>
+        <button class="moment moment--f moment--portrait" type="button" data-caption="La forma en que nos miramos" data-full="assets/img/IMG-20260905-WA0021.jpg">
+          <img src="assets/img/IMG-20260905-WA0021.jpg" alt="Daniel y Alejandra mirándose durante una salida" loading="lazy">
+        </button>
+      </div>
+    </section>
+
+    <section class="chapter" aria-labelledby="chapter-three">
+      <div class="chapter__heading">
+        <span class="chapter__number">03</span>
+        <h2 id="chapter-three">Mi persona favorita</h2>
+        <p>No son sólo las fotos; es todo lo que pasó alrededor de ellas. Cada una guarda un pedacito de lo que más quiero.</p>
+      </div>
+
+      <div class="gallery">
+        <button class="moment moment--b moment--portrait" type="button" data-caption="Ese día y esa sonrisa" data-full="assets/img/1789755073804.jpg">
+          <img src="assets/img/1789755073804.jpg" alt="Daniel y Alejandra posando juntos con sombreros" loading="lazy">
+        </button>
+        <button class="moment moment--a moment--landscape" type="button" data-caption="Cerca de ti todo se siente bien" data-full="assets/img/IMG-20260905-WA0023.jpg">
+          <img src="assets/img/IMG-20260905-WA0023.jpg" alt="Daniel besando a Alejandra en la mejilla" loading="lazy">
+        </button>
+        <button class="moment moment--c moment--landscape" type="button" data-caption="Una tarde cualquiera que se volvió recuerdo" data-full="assets/img/IMG-20260905-WA0022.jpg">
+          <img src="assets/img/IMG-20260905-WA0022.jpg" alt="Daniel y Alejandra juntos en un restaurante" loading="lazy">
+        </button>
+      </div>
+    </section>
+
+    <section class="promise" aria-labelledby="promise-title">
+      <span class="section-mark">Y esto apenas empieza</span>
+      <h2 id="promise-title">Que nunca nos falten<br><em>momentos para recordar</em></h2>
+      <p>
+        Quiero seguir coleccionando contigo días sencillos, aventuras inesperadas,
+        fotos imperfectas y todas esas pequeñas cosas que hacen tan bonita nuestra historia.
+      </p>
+      <span class="promise__heart" aria-hidden="true">♡</span>
+    </section>
+  </main>
+
+  <footer>Daniel &amp; Alejandra · Nuestra historia continúa</footer>
+
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Fotografía ampliada" aria-hidden="true">
+    <figure class="lightbox__figure">
+      <img id="lightboxImage" src="" alt="">
+      <figcaption id="lightboxCaption"></figcaption>
+      <button class="lightbox__close" id="lightboxClose" type="button" aria-label="Cerrar fotografía">×</button>
+    </figure>
+  </div>
+
+  <script>
+    const moments = document.querySelectorAll('.moment');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImage = document.getElementById('lightboxImage');
+    const lightboxCaption = document.getElementById('lightboxCaption');
+    const closeButton = document.getElementById('lightboxClose');
+    let lastTrigger = null;
+
+    function openLightbox(moment) {
+      lastTrigger = moment;
+      lightboxImage.src = moment.dataset.full;
+      lightboxImage.alt = moment.querySelector('img').alt;
+      lightboxCaption.textContent = moment.dataset.caption;
+      lightbox.classList.add('is-open');
+      lightbox.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      closeButton.focus();
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove('is-open');
+      lightbox.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      lightboxImage.src = '';
+      if (lastTrigger) lastTrigger.focus();
+    }
+
+    moments.forEach((moment) => moment.addEventListener('click', () => openLightbox(moment)));
+    closeButton.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', (event) => {
+      if (event.target === lightbox) closeLightbox();
+    });
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && lightbox.classList.contains('is-open')) closeLightbox();
+    });
+  </script>
+</body>
+</html>
