@@ -513,6 +513,25 @@
       .moment--landscape img { object-position: center 43%; }
       .moment--portrait img { object-position: center 32%; }
 
+      /* El último capítulo usa tres retratos: fijamos su orden para evitar huecos. */
+      .gallery--memories .moment:nth-child(1) {
+        grid-column: 1;
+        grid-row: 1 / span 3;
+      }
+
+      .gallery--memories .moment:nth-child(2) {
+        grid-column: 2;
+        grid-row: 1 / span 3;
+      }
+
+      .gallery--memories .moment:nth-child(3) {
+        grid-column: 1 / -1;
+        grid-row: 4 / span 2;
+      }
+
+      .gallery--memories .moment:nth-child(2) img { object-position: center 34%; }
+      .gallery--memories .moment:nth-child(3) img { object-position: center 40%; }
+
       .moment::before {
         content: '';
         position: absolute;
@@ -657,8 +676,8 @@
       </div>
 
       <div class="gallery">
-        <button class="moment moment--a moment--landscape" type="button" data-caption="Caminando juntos, como quiero seguir haciéndolo" data-full="assets/img/IMG-20260917-WA0022.jpg">
-          <img src="assets/img/IMG-20260917-WA0022.jpg" alt="Daniel y Alejandra caminando en un sendero" loading="lazy">
+        <button class="moment moment--a moment--landscape" type="button" data-caption="Aquella vez que fuimos juntos al río de mi casa" data-full="assets/img/IMG-20260917-WA0022.jpg">
+          <img src="assets/img/IMG-20260917-WA0022.jpg" alt="Daniel y Alejandra durante su visita al río cerca de casa" loading="lazy">
         </button>
         <button class="moment moment--b moment--portrait" type="button" data-caption="Dos sombreros y una historia que apenas comienza" data-full="assets/img/1789755073861.jpg">
           <img src="assets/img/1789755073861.jpg" alt="Daniel y Alejandra con sombreros en una celebración" loading="lazy">
@@ -683,8 +702,8 @@
         <button class="moment moment--e moment--portrait" type="button" data-caption="Un beso que se queda conmigo" data-full="assets/img/IMG-20260905-WA0020.jpg">
           <img src="assets/img/IMG-20260905-WA0020.jpg" alt="Alejandra besando a Daniel en la mejilla" loading="lazy">
         </button>
-        <button class="moment moment--f moment--portrait" type="button" data-caption="La forma en que nos miramos" data-full="assets/img/IMG-20260905-WA0021.jpg">
-          <img src="assets/img/IMG-20260905-WA0021.jpg" alt="Daniel y Alejandra mirándose durante una salida" loading="lazy">
+        <button class="moment moment--f moment--portrait" type="button" data-caption="Podría quedarme mirándote así por siempre" data-full="assets/img/IMG-20260905-WA0021.jpg">
+          <img src="assets/img/IMG-20260905-WA0021.jpg" alt="Daniel mira con cariño a Alejandra durante una salida" loading="lazy">
         </button>
       </div>
     </section>
@@ -696,7 +715,7 @@
         <p>No son sólo las fotos; es todo lo que pasó alrededor de ellas. Cada una guarda un pedacito de lo que más quiero.</p>
       </div>
 
-      <div class="gallery">
+      <div class="gallery gallery--memories">
         <button class="moment moment--b moment--portrait" type="button" data-caption="Ese día y esa sonrisa" data-full="assets/img/1789755073804.jpg">
           <img src="assets/img/1789755073804.jpg" alt="Daniel y Alejandra posando juntos con sombreros" loading="lazy">
         </button>
