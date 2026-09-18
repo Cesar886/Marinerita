@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#f5f0ff">
   <meta name="description" content="Una pequeña historia de Daniel y Alejandra, contada con nuestros momentos favoritos.">
-  <title>Nuestra historia — Daniel &amp; Alejandra</title>
+  <title>Nuestra historia 🌸</title>
   <link rel="stylesheet" href="css/shared.css">
   <style>
     :root {
@@ -385,20 +385,221 @@
     }
 
     @media (max-width: 620px) {
-      .hero { min-height: auto; padding-top: 100px; gap: 44px; }
-      .hero__visual { min-height: 490px; }
-      .hero-photo--main { inset: 0 6% 10% 2%; }
-      .hero-photo--small { width: 45%; height: 34%; }
-      .hero__note { left: 0; bottom: 8%; font-size: 0.95rem; }
-      .intro { margin: 50px auto 78px; }
-      .chapter { margin-bottom: 80px; }
-      .chapter__heading { grid-template-columns: 34px 1fr; gap: 12px; }
-      .chapter__heading p { font-size: 0.88rem; }
-      .gallery { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 150px; gap: 10px; }
-      .moment { grid-column: span 1; grid-row: span 2; border-radius: 16px; }
-      .moment--a, .moment--d { grid-column: span 2; grid-row: span 2; }
-      .moment::after { opacity: 1; transform: none; font-size: 0.86rem; }
-      .promise { border-radius: 26px; }
+      .hero {
+        width: min(100% - 24px, 560px);
+        min-height: auto;
+        padding-top: 92px;
+        padding-bottom: 32px;
+        gap: 34px;
+      }
+
+      .hero__copy { padding: 8px 8px 0; }
+
+      .eyebrow {
+        margin-bottom: 16px;
+        font-size: 0.62rem;
+        letter-spacing: 0.16em;
+      }
+
+      .eyebrow::before { width: 24px; }
+
+      .hero h1 {
+        max-width: 100%;
+        font-size: clamp(3rem, 16vw, 4.6rem);
+        line-height: 0.92;
+      }
+
+      .hero__lead {
+        margin-top: 22px;
+        font-size: 0.94rem;
+        line-height: 1.72;
+      }
+
+      .hero__signature { margin-top: 18px; }
+
+      .hero__visual {
+        min-height: 430px;
+        width: 100%;
+      }
+
+      .hero__visual::before {
+        inset: 7% 1% 5% 8%;
+        border-radius: 42% 42% 22px 22px;
+      }
+
+      .hero-photo { border-width: 6px; }
+
+      .hero-photo--main {
+        inset: 0 5% 9% 1%;
+        border-radius: 42% 42% 20px 20px;
+      }
+
+      .hero-photo--main img { object-position: center 48%; }
+
+      .hero-photo--small {
+        right: 1%;
+        width: 43%;
+        height: 32%;
+        border-radius: 16px;
+      }
+
+      .hero__note {
+        left: 0;
+        bottom: 7%;
+        max-width: 61%;
+        padding: 11px 13px;
+        font-size: 0.92rem;
+        line-height: 1.2;
+      }
+
+      .intro {
+        width: calc(100% - 32px);
+        margin: 42px auto 68px;
+      }
+
+      .intro blockquote {
+        font-size: clamp(2rem, 10vw, 3rem);
+        line-height: 1.18;
+      }
+
+      .intro blockquote br { display: none; }
+
+      .chapter {
+        width: calc(100% - 24px);
+        margin-bottom: 72px;
+      }
+
+      .chapter__heading {
+        grid-template-columns: 30px 1fr;
+        gap: 9px 12px;
+        margin-bottom: 20px;
+        padding: 0 4px 20px;
+      }
+
+      .chapter__number { padding-top: 5px; font-size: 0.9rem; }
+
+      .chapter h2 {
+        font-size: clamp(2.15rem, 11vw, 3.25rem);
+        line-height: 0.98;
+      }
+
+      .chapter__heading p {
+        grid-column: 2;
+        font-size: 0.88rem;
+        line-height: 1.62;
+      }
+
+      .gallery {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-auto-rows: 112px;
+        gap: 9px;
+      }
+
+      .moment {
+        grid-column: span 1;
+        grid-row: span 3;
+        min-width: 0;
+        border-radius: 16px;
+        box-shadow: 0 9px 24px rgba(72, 46, 112, 0.1);
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      .moment--a,
+      .moment--d {
+        grid-column: span 2;
+        grid-row: span 2;
+      }
+
+      .moment--landscape img { object-position: center 43%; }
+      .moment--portrait img { object-position: center 32%; }
+
+      .moment::before {
+        content: '';
+        position: absolute;
+        inset: 45% 0 0;
+        z-index: 1;
+        pointer-events: none;
+        background: linear-gradient(to bottom, transparent, rgba(40, 24, 60, 0.58));
+      }
+
+      .moment::after {
+        z-index: 2;
+        left: 8px;
+        right: 8px;
+        bottom: 8px;
+        padding: 7px 8px;
+        border-radius: 9px;
+        background: rgba(44, 27, 65, 0.36);
+        font-size: 0.79rem;
+        line-height: 1.18;
+        opacity: 1;
+        transform: none;
+      }
+
+      .moment:active img { transform: scale(1.025); }
+
+      .promise {
+        width: calc(100% - 24px);
+        margin-bottom: 58px;
+        padding: 48px 24px;
+        border-radius: 24px;
+      }
+
+      .promise h2 { font-size: clamp(2.35rem, 12vw, 3.6rem); }
+      .promise p { font-size: 0.91rem; line-height: 1.7; }
+
+      footer {
+        padding: 0 22px calc(30px + env(safe-area-inset-bottom));
+        font-size: 0.61rem;
+        line-height: 1.7;
+      }
+
+      .lightbox {
+        padding: 12px 12px calc(12px + env(safe-area-inset-bottom));
+      }
+
+      .lightbox__figure {
+        width: 100%;
+        max-height: 92dvh;
+        padding: 6px 6px 13px;
+        border-radius: 18px;
+      }
+
+      .lightbox__figure img {
+        width: 100%;
+        max-height: calc(92dvh - 66px);
+        border-radius: 13px;
+      }
+
+      .lightbox__figure figcaption {
+        padding: 10px 44px 0 10px;
+        font-size: 0.94rem;
+        text-align: left;
+      }
+
+      .lightbox__close {
+        top: 12px;
+        right: 12px;
+        width: 44px;
+        height: 44px;
+      }
+    }
+
+    @media (max-width: 390px) {
+      .site-nav__brand { display: none; }
+      .site-nav { justify-content: center; padding-inline: 6px; }
+      .site-nav__links { width: 100%; justify-content: space-between; }
+      .site-nav a { flex: 1; text-align: center; }
+
+      .hero { padding-top: 86px; }
+      .hero h1 { font-size: clamp(2.75rem, 15vw, 3.6rem); }
+      .hero__visual { min-height: 380px; }
+      .hero-photo--small { width: 46%; }
+      .hero__note { max-width: 60%; font-size: 0.82rem; }
+
+      .gallery { grid-auto-rows: 96px; }
+      .moment::after { font-size: 0.72rem; }
+      .chapter__heading p { grid-column: 1 / -1; padding-top: 5px; }
     }
 
     @media (prefers-reduced-motion: reduce) {
