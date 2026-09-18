@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Lato:wght@300;400&family=Nunito:wght@300;400;500;600&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+    --lila-1:    #f5f0ff;
+    --lila-2:    #ede5ff;
+    --lila-3:    #ddd0ff;
+    --lila-4:    #c9b8f5;
+    --lila-5:    #a98fe8;
+    --lila-6:    #7c5cbf;
+    --pink-1:    #fff0f6;
+    --pink-2:    #ffd6ea;
+    --pink-3:    #ffb3d6;
+    --mint-1:    #edfaf4;
+    --mint-2:    #c5f0dd;
+    --text-dark: #3a2b5f;
+    --text-mid:  #7b6ea0;
+    --text-soft: #b4a8cc;
+    --white:     #ffffff;
+}
+
+body {
+    min-height: 100vh;
+    overflow-x: hidden;
+    font-family: 'Nunito', sans-serif;
+    background:
+        radial-gradient(ellipse at 15% 20%, var(--pink-2) 0%, transparent 55%),
+        radial-gradient(ellipse at 85% 75%, var(--mint-2) 0%, transparent 50%),
+        radial-gradient(ellipse at 55% 50%, var(--lila-3) 0%, var(--lila-1) 100%);
+    background-color: var(--lila-1);
+}
+
+.back-link {
+    position: fixed;
+    top: 18px;
+    left: 20px;
+    z-index: 100;
+    font-family: 'Lato', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-mid);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: color 0.2s;
+}
+.back-link:hover { color: var(--text-dark); }
+
+.petal {
+    position: fixed;
+    font-size: 1.2rem;
+    opacity: 0;
+    animation: fall linear infinite;
+    pointer-events: none;
+    z-index: 0;
+}
+@keyframes fall {
+    0%   { transform: translateY(-40px) rotate(0deg);   opacity: 0.7; }
+    100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+}
+
+.firework {
+    position: fixed;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 999;
+    animation: burst 0.8s ease-out forwards;
+}
+@keyframes burst {
+    0%   { transform: translate(0,0) scale(1); opacity: 1; }
+    100% { transform: translate(var(--tx), var(--ty)) scale(0); opacity: 0; }
+}

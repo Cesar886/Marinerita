@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Para mi Alejandra 🌸</title>
+  <link rel="stylesheet" href="css/shared.css" />
+  <style>
+    /* ── Header ── */
+    header {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 70px 20px 10px;
+    }
+    header .eyebrow {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--lila-5);
+      margin-bottom: 14px;
+    }
+    header h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.4rem, 7vw, 4.2rem);
+      font-weight: 600;
+      color: var(--text-dark);
+      line-height: 1.1;
+    }
+    header h1 em {
+      font-style: italic;
+      color: var(--lila-5);
+    }
+    header .subtitle {
+      margin-top: 14px;
+      font-size: 0.88rem;
+      color: var(--text-mid);
+      font-weight: 300;
+    }
+
+    /* ── Counter ── */
+    .counter-wrap {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      margin: 28px 0 10px;
+    }
+    .counter-wrap span {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      color: var(--text-mid);
+      letter-spacing: 0.05em;
+    }
+    .counter-wrap strong {
+      font-size: 1.5rem;
+      color: var(--text-dark);
+    }
+
+    /* ── Progress bar ── */
+    .progress-bar {
+      width: min(340px, 80vw);
+      margin: 6px auto 0;
+      height: 3px;
+      background: var(--lila-3);
+      border-radius: 99px;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--lila-4), var(--lila-5));
+      border-radius: 99px;
+      transition: width 0.5s ease;
+      width: 0%;
+    }
+
+    /* ── Grid ── */
+    .grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 18px;
+      max-width: 860px;
+      margin: 30px auto 60px;
+      padding: 0 24px;
+    }
+
+    /* ── Card ── */
+    .card-outer {
+      perspective: 900px;
+      height: 220px;
+      cursor: pointer;
+    }
+    .card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transform-style: preserve-3d;
+      transition: transform 0.65s cubic-bezier(0.4, 0.2, 0.2, 1);
+      border-radius: 18px;
+    }
+    .card-outer.flipped .card-inner {
+      transform: rotateY(180deg);
+    }
+
+    .card-face {
+      position: absolute;
+      inset: 0;
+      border-radius: 18px;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+      text-align: center;
+    }
+
+    /* Front */
+    .card-front {
+      background: linear-gradient(145deg, var(--lila-2), var(--lila-1));
+      border: 1px solid var(--lila-3);
+      box-shadow: 0 4px 20px rgba(169, 143, 232, 0.12);
+    }
+    .card-front .number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.8rem;
+      font-weight: 600;
+      color: var(--lila-4);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .card-front .hint {
+      font-size: 0.7rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-mid);
+      opacity: 0.7;
+    }
+    .card-front .icon { font-size: 1.6rem; margin-bottom: 8px; }
+
+    /* Back */
+    .card-back {
+      background: linear-gradient(145deg, var(--lila-6), var(--lila-5));
+      transform: rotateY(180deg);
+      box-shadow: 0 8px 30px rgba(124, 92, 191, 0.35);
+    }
+    .card-back .razon {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.08rem;
+      font-style: italic;
+      font-weight: 400;
+      color: var(--lila-1);
+      line-height: 1.45;
+    }
+    .card-back .decorline {
+      width: 30px;
+      height: 1px;
+      background: var(--lila-4);
+      margin: 10px auto 0;
+      opacity: 0.6;
+    }
+
+    /* ── Completion message ── */
+    .complete-msg {
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: rgba(124, 92, 191, 0.55);
+      backdrop-filter: blur(6px);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.5s;
+    }
+    .complete-msg.show {
+      opacity: 1;
+      pointer-events: all;
+    }
+    .complete-card {
+      background: var(--lila-1);
+      border-radius: 24px;
+      padding: 48px 40px;
+      text-align: center;
+      max-width: 340px;
+      margin: 20px;
+      box-shadow: 0 20px 60px rgba(124, 92, 191, 0.35);
+      border: 1px solid var(--lila-3);
+    }
+    .complete-card h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      color: var(--text-dark);
+      margin-bottom: 12px;
+    }
+    .complete-card p {
+      color: var(--text-mid);
+      font-size: 0.92rem;
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+    .complete-card button {
+      background: var(--lila-6);
+      color: var(--lila-1);
+      border: none;
+      border-radius: 99px;
+      padding: 12px 32px;
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      font-family: 'Nunito', sans-serif;
+      transition: background 0.2s;
+    }
+    .complete-card button:hover { background: var(--lila-5); }
+
+    /* ── Responsive ── */
+    @media (max-width: 600px) {
+      header { padding: 52px 16px 8px; }
+      header .subtitle { font-size: 0.82rem; }
+
+      .counter-wrap { margin: 18px 0 8px; }
+
+      .grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+        padding: 0 14px;
+        margin-bottom: 40px;
+      }
+      .card-outer { height: 230px; }
+      .card-back .razon { font-size: 0.95rem; line-height: 1.4; }
+
+      .complete-card { padding: 32px 24px; }
+      .complete-card h2 { font-size: 1.6rem; }
+    }
+
+    @media (max-width: 380px) {
+      .grid { gap: 10px; padding: 0 10px; }
+      .card-outer { height: 220px; }
+      .card-back .razon { font-size: 0.88rem; }
+      .card-front .number { font-size: 2.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<a href="index.html" class="back-link">← volver</a>
+
+<!-- Floating petals -->
+<div class="petal" style="left:8%;  animation-duration:9s;  animation-delay:0s">🌸</div>
+<div class="petal" style="left:22%; animation-duration:12s; animation-delay:2s">✨</div>
+<div class="petal" style="left:45%; animation-duration:10s; animation-delay:1s">🌸</div>
+<div class="petal" style="left:68%; animation-duration:14s; animation-delay:3s">💜</div>
+<div class="petal" style="left:85%; animation-duration:11s; animation-delay:0.5s">🌸</div>
+<div class="petal" style="left:55%; animation-duration:8s;  animation-delay:4s">✨</div>
+
+<header>
+  <p class="eyebrow">para mi Alejandra 🌸</p>
+  <h1>Razones por las<br>que <em>te quiero</em></h1>
+  <p class="subtitle">Toca cada tarjeta para descubrir una razón 💜</p>
+</header>
+
+<div class="counter-wrap">
+  <span>Has descubierto <strong id="count">0</strong> de <strong id="total">0</strong> razones</span>
+  <div class="progress-bar"><div class="progress-fill" id="fill"></div></div>
+</div>
+
+<div class="grid" id="grid"></div>
+
+<!-- Completion overlay -->
+<div class="complete-msg" id="completemsg">
+  <div class="complete-card">
+    <div style="font-size:2.5rem;margin-bottom:12px">💜</div>
+    <h2>¡Las encontraste todas!</h2>
+    <p>Y hay miles más que no caben en ninguna página.<br>Te quiero muchísimo, mi marinerita.</p>
+    <button onclick="document.getElementById('completemsg').classList.remove('show')">Cerrar ✨</button>
+  </div>
+</div>
+
+<script>
+  const razones = [
+    { icon: "😊", text: "Tu sonrisa fue lo primero que noté de ti. Y sigue siendo lo que más me gusta cada vez que te veo." },
+    { icon: "🍂", text: "No fue un momento exacto en el que me gustaste. Fui cayendo poco a poco, y todavía sigo cayendo." },
+    { icon: "🤗", text: "Cuando me abrazas, todo lo que traía en la cabeza desaparece. No sé cómo lo haces, pero funciona." },
+    { icon: "🥖", text: "Me gusta que ir a comprar pan contigo se siente como un plan completo. No necesito más." },
+    { icon: "🎬", text: "Ver películas en la uni contigo es de mis cosas favoritas. No importa cuál, el punto eres tú." },
+    { icon: "🙏", text: "Que me agarres de la mano en la iglesia, sin decir nada, me dice más que muchas palabras." },
+    { icon: "📖", text: "Admiro mucho tu compromiso con el libro de actividades que estamos haciendo. Lo tomas en serio y eso me dice mucho de ti." },
+    { icon: "🌸", text: "La forma en que tratas a los demás me dice todo lo que necesito saber de quién eres. Eres buena persona, de verdad." },
+    { icon: "💬", text: "Siempre tienes algo que decir. Nunca hay un silencio incómodo contigo y me encanta eso." },
+    { icon: "✨", text: "Tu energía es contagiosa. Llegas y todo cambia. No sé explicarlo, pero se nota." },
+    { icon: "💜", text: "Llevamos unos meses y ya no me imagino no tenerte cerca." },
+    { icon: "🌊", text: "El colportaje nos alejó un poco, y fue cuando me di cuenta de cuánto me importas." },
+  ];
+
+  const grid = document.getElementById('grid');
+  const countEl = document.getElementById('count');
+  const totalEl = document.getElementById('total');
+  const fillEl  = document.getElementById('fill');
+  const completeMsg = document.getElementById('completemsg');
+  let flippedCount = 0;
+
+  totalEl.textContent = razones.length;
+
+  razones.forEach((r, i) => {
+    const outer = document.createElement('div');
+    outer.className = 'card-outer';
+
+    outer.innerHTML = `
+      <div class="card-inner">
+        <div class="card-face card-front">
+          <div class="icon">${r.icon}</div>
+          <div class="number">${String(i + 1).padStart(2, '0')}</div>
+          <div class="hint">tócame</div>
+        </div>
+        <div class="card-face card-back">
+          <div class="razon">${r.text}</div>
+          <div class="decorline"></div>
+        </div>
+      </div>`;
+
+    outer.addEventListener('click', () => {
+      if (!outer.classList.contains('flipped')) {
+        outer.classList.add('flipped');
+        flippedCount++;
+        countEl.textContent = flippedCount;
+        fillEl.style.width = (flippedCount / razones.length * 100) + '%';
+
+        if (flippedCount === razones.length) {
+          setTimeout(() => {
+            launchFireworks();
+            completeMsg.classList.add('show');
+          }, 700);
+        }
+      }
+    });
+
+    grid.appendChild(outer);
+  });
+
+  function launchFireworks() {
+    const colors = ['#c9b8f5', '#a98fe8', '#7c5cbf', '#ffd6ea', '#ede5ff'];
+    for (let burst = 0; burst < 5; burst++) {
+      const bx = 20 + Math.random() * 60;
+      const by = 20 + Math.random() * 60;
+      for (let p = 0; p < 14; p++) {
+        const el = document.createElement('div');
+        el.className = 'firework';
+        const angle = (p / 14) * Math.PI * 2;
+        const dist  = 60 + Math.random() * 80;
+        el.style.cssText = `
+          left: ${bx}vw; top: ${by}vh;
+          background: ${colors[Math.floor(Math.random() * colors.length)]};
+          --tx: ${Math.cos(angle) * dist}px;
+          --ty: ${Math.sin(angle) * dist}px;
+          animation-delay: ${burst * 0.15}s;
+        `;
+        document.body.appendChild(el);
+        setTimeout(() => el.remove(), 1200 + burst * 150);
+      }
+    }
+  }
+</script>
+</body>
+</html>

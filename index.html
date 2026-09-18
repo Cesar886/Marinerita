@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para mi Alejandra 🌸</title>
+    <link rel="stylesheet" href="css/shared.css">
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
+        }
+
+        /* ── Partículas canvas ── */
+        #sparkCanvas {
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* ── Floating emojis ── */
+        .bg-elements {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .bg-float {
+            position: absolute;
+            animation: floatUp linear infinite;
+            opacity: 0;
+        }
+
+        @keyframes floatUp {
+            0%   { transform: translateY(108vh) rotate(-10deg) scale(0.7); opacity: 0; }
+            12%  { opacity: 0.7; }
+            88%  { opacity: 0.3; }
+            100% { transform: translateY(-8vh)  rotate(10deg)  scale(1.05); opacity: 0; }
+        }
+
+        /* ── Carta principal ── */
+        .main-container {
+            position: relative;
+            z-index: 10;
+            background: rgba(255, 255, 255, 0.62);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border-radius: 40px;
+            padding: 4rem 3.4rem 3.8rem;
+            max-width: 630px;
+            width: 90%;
+            text-align: center;
+            border: 1.5px solid rgba(200, 180, 255, 0.55);
+            box-shadow:
+                0 20px 70px rgba(160, 120, 240, 0.14),
+                0 4px 20px rgba(160, 120, 240, 0.08),
+                inset 0 1px 0 rgba(255, 255, 255, 0.9);
+        }
+
+        /* Detalles decorativos de esquinas */
+        .main-container::before,
+        .main-container::after {
+            content: '';
+            position: absolute;
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        .main-container::before {
+            top: -25px; left: -25px;
+            background: radial-gradient(circle, var(--pink-2) 0%, transparent 70%);
+            opacity: 0.7;
+        }
+        .main-container::after {
+            bottom: -25px; right: -25px;
+            background: radial-gradient(circle, var(--mint-2) 0%, transparent 70%);
+            opacity: 0.6;
+        }
+
+        .deco {
+            display: block;
+            font-size: 2.1rem;
+            margin-bottom: 1.4rem;
+            letter-spacing: 8px;
+            animation: floatSlow 4s ease-in-out infinite;
+        }
+
+        @keyframes floatSlow {
+            0%, 100% { transform: translateY(0); }
+            50%       { transform: translateY(-8px); }
+        }
+
+        .title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.15rem;
+            font-weight: 400;
+            color: var(--text-dark);
+            line-height: 1.55;
+        }
+
+        .title .name {
+            display: block;
+            font-style: italic;
+            font-size: 3rem;
+            font-weight: 600;
+            background: linear-gradient(130deg, var(--lila-6) 0%, var(--lila-5) 40%, #d48fc8 80%, var(--pink-3) 100%);
+            background-size: 220%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 5.5s ease-in-out infinite;
+            margin-bottom: 0.3rem;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { background-position: 0% 50%; }
+            50%       { background-position: 100% 50%; }
+        }
+
+        .subtitle {
+            margin-top: 0.55rem;
+            font-size: 0.78rem;
+            color: var(--text-soft);
+            letter-spacing: 4.5px;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin: 1.9rem auto 2.6rem;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            max-width: 70px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--lila-4));
+        }
+
+        .divider::after {
+            background: linear-gradient(90deg, var(--lila-4), transparent);
+        }
+
+        .divider-dot {
+            width: 6px; height: 6px;
+            border-radius: 50%;
+            background: var(--lila-4);
+        }
+
+        /* ── Botones ── */
+        .buttons-wrapper {
+            position: relative;
+            width: 100%;
+            height: 185px;
+            margin: 0 auto;
+            max-width: 480px;
+        }
+
+        .btn {
+            position: absolute;
+            padding: 0.85rem 2.2rem;
+            font-family: 'Nunito', sans-serif;
+            font-size: 0.88rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            outline: none;
+            white-space: nowrap;
+            transition: all 0.28s ease;
+        }
+
+        .btn-yes {
+            background: linear-gradient(135deg, var(--lila-5) 0%, #c9a4f0 50%, #e8a4cc 100%);
+            color: white;
+            box-shadow:
+                0 8px 28px rgba(169, 143, 232, 0.45),
+                0 0 0 3px rgba(200, 170, 245, 0.25);
+            left: 20%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+            text-shadow: 0 1px 3px rgba(100, 60, 160, 0.25);
+        }
+
+        .btn-yes:hover, .btn-yes:active {
+            transform: translate(-50%, -50%) scale(1.09);
+            box-shadow:
+                0 14px 40px rgba(169, 143, 232, 0.58),
+                0 0 0 5px rgba(200, 170, 245, 0.2);
+        }
+
+        .btn-no {
+            background: rgba(220, 210, 245, 0.35);
+            color: var(--text-soft);
+            border: 1.5px solid rgba(200, 180, 255, 0.4);
+            left: 80%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+            transition: left 0.17s ease-out, top 0.17s ease-out, box-shadow 0.2s;
+        }
+
+        .btn-no:hover { background: rgba(220, 210, 245, 0.5); }
+
+        .attempts-msg {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.88rem;
+            color: var(--lila-6);
+            font-weight: 600;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            width: 100%;
+            white-space: nowrap;
+        }
+
+        .attempts-msg.visible { opacity: 1; }
+
+        /* ── Overlay éxito ── */
+        .overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(230, 215, 255, 0.55);
+            backdrop-filter: blur(14px);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease;
+        }
+
+        .overlay.active { opacity: 1; pointer-events: all; }
+
+        .overlay-content {
+            background: rgba(255, 255, 255, 0.88);
+            border: 1.5px solid rgba(200, 175, 255, 0.5);
+            border-radius: 34px;
+            padding: 4rem 3.2rem;
+            text-align: center;
+            max-width: 510px;
+            width: 90%;
+            box-shadow:
+                0 30px 80px rgba(160, 120, 240, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.95);
+            transform: scale(0.82) translateY(28px);
+            opacity: 0;
+            transition: all 0.65s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .overlay.active .overlay-content { transform: scale(1) translateY(0); opacity: 1; }
+
+        .overlay-emoji { font-size: 3rem; margin-bottom: 1.2rem; letter-spacing: 10px; }
+
+        .overlay-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 2rem;
+            background: linear-gradient(130deg, var(--lila-6), var(--lila-5), #d48fc8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.4rem;
+            line-height: 1.4;
+        }
+
+        .overlay-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin: 1.3rem auto;
+        }
+
+        .overlay-divider::before, .overlay-divider::after {
+            content: '';
+            flex: 1;
+            max-width: 55px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--lila-4));
+        }
+
+        .overlay-divider::after {
+            background: linear-gradient(90deg, var(--lila-4), transparent);
+        }
+
+        .overlay-divider-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--lila-4); }
+
+        .overlay-text {
+            font-size: 0.97rem;
+            color: var(--text-mid);
+            line-height: 1.9;
+            margin-bottom: 1.8rem;
+            font-weight: 300;
+        }
+
+        .overlay-sign {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 1.2rem;
+            color: var(--lila-5);
+            line-height: 1.7;
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 600px) {
+            .main-container { padding: 3rem 1.8rem 2.8rem; }
+            .title { font-size: 1.8rem; }
+            .title .name { font-size: 2.3rem; }
+            .buttons-wrapper { height: 165px; }
+            .btn-yes { left: 50%; top: 22%; }
+            .btn-no  { left: 50%; top: 76%; }
+        }
+    </style>
+</head>
+<body>
+
+<canvas id="sparkCanvas"></canvas>
+<div class="bg-elements" id="bgElements"></div>
+
+<div class="main-container">
+    <span class="deco">🌸 ✨ 💜</span>
+    <h1 class="title">
+        <span class="name">Alejandra Guadalupe,</span>
+        ¿quieres pasar toda la vida a mi lado?
+    </h1>
+
+
+    <div class="divider">
+        <div class="divider-dot"></div>
+        <div class="divider-dot"></div>
+        <div class="divider-dot"></div>
+    </div>
+
+    <div class="buttons-wrapper" id="buttonsWrapper">
+        <button class="btn btn-yes" id="btnYes">¡Sí, acepto! 🌸</button>
+        <button class="btn btn-no"  id="btnNo">No... 😅</button>
+        <p class="attempts-msg" id="attemptsMsg"></p>
+    </div>
+
+    <div style="text-align:center; margin-top: 20px;">
+      <a href="razones.html" style="
+        display: inline-block;
+        background: transparent;
+        color: var(--text-soft);
+        font-family: 'Nunito', sans-serif;
+        font-size: 0.72rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        text-decoration: none;
+        padding: 9px 22px;
+        border-radius: 99px;
+        border: 1px solid rgba(200, 180, 255, 0.45);
+      ">Ver razones por las que te quiero 💜</a>
+    </div>
+</div>
+
+<div class="overlay" id="overlay">
+    <div class="overlay-content">
+        <div class="overlay-emoji">🌸 💜 ✨</div>
+        <h2 class="overlay-title">Te extraño más de lo que pensaba 💜</h2>
+        <div class="overlay-divider">
+            <div class="overlay-divider-dot"></div>
+            <div class="overlay-divider-dot"></div>
+            <div class="overlay-divider-dot"></div>
+        </div>
+        <p class="overlay-text">
+            Aunque estemos ocupados, dos semanas sin verte se sienten eternas.<br>
+            Cuídate mucho por allá ✨
+        </p>
+        <p class="overlay-sign">— Daniel</p>
+    </div>
+</div>
+
+<script>
+(function () {
+    /* ── Partículas suaves ── */
+    const canvas = document.getElementById('sparkCanvas');
+    const ctx    = canvas.getContext('2d');
+    let particles = [];
+
+    const COLORS = [
+        [200, 175, 255],   /* lila */
+        [255, 190, 220],   /* rosa */
+        [185, 240, 215],   /* menta */
+        [240, 220, 255],   /* lavanda pálido */
+    ];
+
+    function resize() {
+        canvas.width  = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
+
+    function initParticles() {
+        particles = Array.from({ length: 90 }, () => {
+            const c = COLORS[Math.floor(Math.random() * COLORS.length)];
+            return {
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                r: Math.random() * 3.5 + 1,
+                color: c,
+                alpha: Math.random() * 0.55 + 0.15,
+                twinkle: Math.random() * Math.PI * 2,
+                speed: Math.random() * 0.016 + 0.005,
+                drift: (Math.random() - 0.5) * 0.12,
+                vy: -(Math.random() * 0.15 + 0.04),
+            };
+        });
+    }
+
+    function drawParticles() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        for (const p of particles) {
+            p.twinkle += p.speed;
+            p.x += p.drift;
+            p.y += p.vy;
+            if (p.y < -10) { p.y = canvas.height + 10; p.x = Math.random() * canvas.width; }
+
+            const a = p.alpha * (0.5 + 0.5 * Math.sin(p.twinkle));
+            const [r, g, b] = p.color;
+
+            /* halo suave */
+            const grd = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r * 2.5);
+            grd.addColorStop(0, `rgba(${r},${g},${b},${a})`);
+            grd.addColorStop(1, `rgba(${r},${g},${b},0)`);
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.r * 2.5, 0, Math.PI * 2);
+            ctx.fillStyle = grd;
+            ctx.fill();
+
+            /* núcleo */
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.r * 0.5, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(255,255,255,${a * 0.9})`;
+            ctx.fill();
+        }
+        requestAnimationFrame(drawParticles);
+    }
+
+    resize(); initParticles(); drawParticles();
+    window.addEventListener('resize', () => { resize(); initParticles(); });
+
+    /* ── Emojis flotantes ── */
+    const bgContainer = document.getElementById('bgElements');
+    const pool = ['🌸', '✨', '💜', '🌷', '💫', '🫧', '🌿', '🩷', '⭐'];
+
+    function createFloat() {
+        const el = document.createElement('span');
+        el.className = 'bg-float';
+        el.textContent = pool[Math.floor(Math.random() * pool.length)];
+        el.style.left = Math.random() * 94 + '%';
+        el.style.fontSize = (Math.random() * 1 + 0.75) + 'rem';
+        const dur = Math.random() * 13 + 12;
+        el.style.animationDuration = dur + 's';
+        bgContainer.appendChild(el);
+        setTimeout(() => el.remove(), dur * 1000);
+    }
+
+    setInterval(createFloat, 2000);
+    for (let i = 0; i < 8; i++) setTimeout(createFloat, i * 360);
+
+    /* ── Lógica botones ── */
+    const btnNo   = document.getElementById('btnNo');
+    const btnYes  = document.getElementById('btnYes');
+    const wrapper = document.getElementById('buttonsWrapper');
+    const msg     = document.getElementById('attemptsMsg');
+    const overlay = document.getElementById('overlay');
+
+    let attempts = 0;
+    const messages = [
+        { min: 1, max: 2,  text: 'Amor… creo que ese no era el botón 🌸' },
+        { min: 3, max: 4,  text: 'Las estrellas ya saben tu respuesta 💫' },
+        { min: 5, max: 7,  text: 'El universo conspira a nuestro favor ✨' },
+        { min: 8, max: 999,text: '¡Ríndete, preciosa! Tu "Sí" lo ilumina todo 💜' },
+    ];
+
+    function moveNoBtn() {
+        attempts++;
+        const wRect = wrapper.getBoundingClientRect();
+        const bRect = btnNo.getBoundingClientRect();
+        btnNo.style.transform = 'none';
+        btnNo.style.left = Math.max(0, Math.random() * (wRect.width  - bRect.width))  + 'px';
+        btnNo.style.top  = Math.max(0, Math.random() * (wRect.height - bRect.height)) + 'px';
+
+        for (const m of messages) {
+            if (attempts >= m.min && attempts <= m.max) {
+                msg.textContent = m.text;
+                msg.classList.add('visible');
+                break;
+            }
+        }
+    }
+
+    btnNo.addEventListener('mouseover',  moveNoBtn);
+    btnNo.addEventListener('touchstart', e => { e.preventDefault(); moveNoBtn(); });
+
+    function showSuccess() {
+        overlay.classList.add('active');
+        if (navigator.vibrate) navigator.vibrate([80, 50, 120, 50, 200]);
+    }
+
+    btnYes.addEventListener('click',      showSuccess);
+    btnYes.addEventListener('touchstart', e => { e.preventDefault(); showSuccess(); });
+})();
+</script>
+
+</body>
+</html>
